@@ -1,6 +1,3 @@
-
-
-
 (function(document){
     "use strict";
     var attribute = function(div){
