@@ -10,6 +10,7 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
     <link href="css/style.css" rel="stylesheet" />
+    <link href="css/haskell.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -21,12 +22,37 @@
         <p>For the best experience please use the latest <b>Chrome</b> or <b>Safari</b> browser. Firefox 10 and Internet Explorer 10 <i>should</i> also handle it.</p>
     </div>
 
-    <div class="step slide" data-x="-1000" data-y="-1500">
-        <q>Aren't you just <b>bored</b> with all those slides-based presentations?</q>
+    <div class="step slide" data-x="-1500" data-y="-1500">
+      <pre class="haskell">
+<span class='hs-keyword'>module</span> <span class='hs-conid'>Nothing</span> <span class='hs-keyword'>where</span> <span class='hs-layout'>(</span><span class='hs-conid'>Foo</span><span class='hs-layout'>,</span><span class='hs-conid'>Bar</span><span class='hs-layout'>(</span><span class='hs-keyglyph'>..</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span>
+
+<span class='hs-keyword'>import</span> <span class='hs-conid'>Baz</span> <span class='hs-varid'>hiding</span><span class='hs-layout'>(</span><span class='hs-conid'>That</span><span class='hs-layout'>)</span>
+
+<span class='hs-comment'>-- This is a comment</span>
+<span class='hs-cpp'>#define foo</span>
+
+<span class='hs-definition'>fibs</span> <span class='hs-keyglyph'>=</span> <span class='hs-num'>1</span> <span class='hs-conop'>:</span> <span class='hs-num'>1</span> <span class='hs-conop'>:</span> <span class='hs-varid'>zipWith</span> <span class='hs-layout'>(</span><span class='hs-varop'>+</span><span class='hs-layout'>)</span> <span class='hs-varid'>fibs</span> <span class='hs-layout'>(</span><span class='hs-varid'>tail</span> <span class='hs-varid'>fibs</span><span class='hs-layout'>)</span>
+
+<span class='hs-definition'>qsort</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-conid'>Ord</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span>
+<span class='hs-definition'>qsort</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>qsort</span> <span class='hs-varid'>smaller</span> <span class='hs-varop'>++</span> <span class='hs-varid'>x</span> <span class='hs-conop'>:</span> <span class='hs-varid'>qsort</span> <span class='hs-varid'>larger</span>
+  <span class='hs-keyword'>where</span> <span class='hs-varid'>smaller</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>filter</span> <span class='hs-layout'>(</span><span class='hs-varop'>&lt;</span><span class='hs-varid'>x</span><span class='hs-layout'>)</span>  <span class='hs-varid'>xs</span>
+        <span class='hs-varid'>larger</span>  <span class='hs-keyglyph'>=</span> <span class='hs-varid'>filter</span> <span class='hs-layout'>(</span><span class='hs-varop'>&gt;=</span><span class='hs-varid'>x</span><span class='hs-layout'>)</span> <span class='hs-varid'>xs</span>
+<span class='hs-definition'>qsort</span> <span class='hs-conid'>[]</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>	
+      </pre>
     </div>
 
-    <div class="step slide" data-x="0" data-y="-1500">
-        <q>Don't you think that presentations given <strong>in modern browsers</strong> shouldn't <strong>copy the limits</strong> of 'classic' slide decks?</q>
+    <div class="step slide" data-x="-500" data-y="-1500">
+      <pre class="haskell">
+<span class='hs-definition'>mergesort</span> <span class='hs-conid'>[]</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>
+<span class='hs-definition'>mergesort</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>x</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>=</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>x</span><span class='hs-keyglyph'>]</span>
+<span class='hs-definition'>mergesort</span> <span class='hs-varid'>x</span>  <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>let</span> <span class='hs-layout'>(</span><span class='hs-varid'>l</span><span class='hs-layout'>,</span><span class='hs-varid'>r</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>foldl</span> <span class='hs-layout'>(</span><span class='hs-keyglyph'>\</span><span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-layout'>,</span><span class='hs-varid'>y</span><span class='hs-layout'>)</span> <span class='hs-varid'>z</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>z</span><span class='hs-conop'>:</span><span class='hs-varid'>y</span><span class='hs-layout'>,</span><span class='hs-varid'>x</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>[]</span><span class='hs-layout'>,</span><span class='hs-conid'>[]</span><span class='hs-layout'>)</span> <span class='hs-varid'>x</span>
+               <span class='hs-keyword'>in</span> <span class='hs-varid'>merge</span> <span class='hs-layout'>(</span><span class='hs-varid'>mergesort</span> <span class='hs-varid'>l</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>mergesort</span> <span class='hs-varid'>r</span><span class='hs-layout'>)</span>
+  <span class='hs-keyword'>where</span> <span class='hs-varid'>merge</span> <span class='hs-conid'>[]</span> <span class='hs-varid'>x</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>x</span>
+        <span class='hs-varid'>merge</span> <span class='hs-varid'>x</span> <span class='hs-conid'>[]</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>x</span>
+        <span class='hs-varid'>merge</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>y</span><span class='hs-conop'>:</span><span class='hs-varid'>ys</span><span class='hs-layout'>)</span>
+          <span class='hs-keyglyph'>|</span> <span class='hs-varid'>x</span> <span class='hs-varop'>&lt;=</span> <span class='hs-varid'>y</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>x</span> <span class='hs-conop'>:</span> <span class='hs-varid'>merge</span> <span class='hs-varid'>xs</span> <span class='hs-layout'>(</span><span class='hs-varid'>y</span><span class='hs-conop'>:</span><span class='hs-varid'>ys</span><span class='hs-layout'>)</span>
+          <span class='hs-keyglyph'>|</span> <span class='hs-varid'>otherwise</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>y</span> <span class='hs-conop'>:</span> <span class='hs-varid'>merge</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-varid'>ys</span>
+      </pre>
     </div>
 
     <div class="step slide" data-x="1000" data-y="-1500">

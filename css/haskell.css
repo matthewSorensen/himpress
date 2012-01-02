@@ -1,0 +1,14 @@
+pre.haskell {background: #fdf6e3;} /* base03 */
+.hs-keyglyph {color: #2aa198;}/* cyan*/
+.hs-layout {color:  #dc322f;}/* red */
+.hs-comment a {color: #cb4b16;}/* orange*/
+.hs-keyword {color: #2aa198;}/* cyan */
+.hs-cpp {color: #cb4b16;}/* orange*/
+.hs-sel {/* I have no idea what this is for, and I'm too lazy to check the source. */}
+.hs-definition {color: #268bd2;}/* blue */
+.hs-varop {color: #268bd2;} /* blue */ 
+.hs-conop {color: #859900;}/* green */ 
+.hs-varid {color: #657b83;}/* base00 */
+.hs-conid {color: #b58900}/* yellow */
+.hs-comment {color: #dc322f}/* red */
+.hs-num, .hs-str, .hs-char {color: #2aa198;}/* cyan */
