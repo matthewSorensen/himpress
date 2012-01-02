@@ -7,7 +7,7 @@
 	    var link = document.createElement('a');
 	    link.setAttribute('href',url);
 	    link.setAttribute('target','_Blank');
-	    link.innerText = title;
+	    link.innerHTML = title;
 	    div.appendChild(document.createElement('hr'));
 	    div.appendChild(link);
 	}

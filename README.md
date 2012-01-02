@@ -2,8 +2,11 @@ This looks like a very nice place to start that Haskell-presentation super-tool 
 long been threatening to write. As of now, the grand plan is something like:
 
 1) Build my own version of the main style-sheet - incorporating a nice modern Haskell mode. Something...solarized...?
+
 2) Some monstrosity, linking pandoc, Hscolor, and my own slide-layout DSL + tool
+
 3) ????
+
 4) PROFIT
 
 Full insanity would be some way to start referencing definitions in the slide (wait until the base library has anchors),
@@ -12,6 +15,13 @@ and clever linking of libraries, documentation, and source, like Agda.
 Even worse would be some way of getting haddock to render in a presentation like this. Could use something like a connectivity graph to
 fully lay-out the module, starting with types/classes and then fanning out to secondary definitions... This is a horrid idea, and shouldn't be 
 attempted.
+
+Todo:
+
++ My own version of the CSS
++ Switch over to highlighting-kate highlighting library.
++ Build a mostly-blank template presentation
++ Update from upstream
 
 ~~impress.js~~ himpress
 ============
