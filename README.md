@@ -19,7 +19,6 @@ attempted.
 Todo:
 
 + My own version of the CSS
-+ Switch over to highlighting-kate highlighting library.
 + Build a mostly-blank template presentation
 + Update from upstream
 

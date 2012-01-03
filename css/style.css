@@ -77,14 +77,9 @@ b, strong { font-weight: bold }
 i, em { font-style: italic}
 
 a {
-    color: inherit;
+    color: #268bd2;
     text-decoration: none;
     padding: 0 0.1em;b
-}
-
-a:hover {
-    background: rgba(255,255,255,1);
-    text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
 /* COMMON STEP STYLES */
