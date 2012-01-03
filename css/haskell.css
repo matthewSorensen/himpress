@@ -2,7 +2,7 @@
 div.code {
     display: block;
     border-radius: 10px;
-    background-color: #fdf6e3; /* base03 */
+    background-color: #eee8d5; /* base2 */
     padding: 20px 20px 20px 20px;
     font-family: 'Open Sans', Arial, sans-serif;
     color: #657b83;/* base00 */
@@ -33,7 +33,7 @@ pre.haskell {
 .hs-comment {color: #dc322f}/* red */
 .hs-num, .hs-str, .hs-char {color: #2aa198;}/* cyan */
 
-#haskell {
+div.hs-logo {
     width: 700px;
     padding-bottom: 400px;
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI0ODFwdCIgaGVpZ2h0PSIzNDBwdCIgdmlld0JveD0iMCAwIDQ4MSAzNDAiIHZlcnNpb249IjEuMSI+PGRlZnM+PGNsaXBQYXRoPjxwYXRoIGQ9Ik0gMCAzNDAgTCA0ODEgMzQwIEwgNDgxIDAgTCAwIDAgTCAwIDM0MCBaIE0gMCAzNDAiLz48L2NsaXBQYXRoPjwvZGVmcz48Zz48cGF0aCBzdHlsZT0iZmlsbDogIzY2NjY2NiIgZD0iTSAwIDM0MCBMIDExMyAxNzAgTCAwIDAgTCA4NSAwIEwgMTk4IDE3MCBMIDg1IDM0MCBMIDAgMzQwIFogTSAwIDM0MCIvPjxwYXRoIHN0eWxlPSJmaWxsOiAjOTk5OTlBIiBkPSJNIDExMyAzNDAgTCAyMjcgMTcwIEwgMTEzIDAgTCAxOTggMCBMIDQyNSAzNDAgTCAzNDAgMzQwIEwgMjY5IDIzMyBMIDE5OCAzNDAgTCAxMTMgMzQwIFogTSAxMTMgMzQwIi8+PHBhdGggc3R5bGU9ImZpbGw6ICM2NjY2NjYiIGQ9Ik0gMzg3IDI0MSBMIDM1MCAxODQgTCA0ODIgMTg0LjI1IEwgNDgyIDI0MSBMIDM4NyAyNDEgWiBNIDM4NyAyNDEiLz48cGF0aCBzdHlsZT0iZmlsbDogIzY2NjY2NiIgZD0iTSAzMzEgMTU2IEwgMjkzIDk5IEwgNDgyIDk5IEwgNDgyIDE1NiBMIDMzMSAxNTYgWiBNIDMzMSAxNTYiLz48L2c+PC9zdmc+Cg==);
