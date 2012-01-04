@@ -60,9 +60,11 @@ a {color: #268bd2;}
 /* overview step. This would be really nice if we could make this a class. */
 #overview {
     z-index: -1;
+    padding: 0;
 }
 #impress.step-overview .step {
     opacity: 1;
+    cursor: pointer;
 }
 
 
