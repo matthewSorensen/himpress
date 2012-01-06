@@ -1,5 +1,7 @@
 {-# LANGUAGE ExistentialQuantification, OverloadedStrings #-}
-module Compiler.Framework where
+module Compiler.Framework 
+    (Element,Format,DocMode (..),parsePresentation)
+        where
 
 import Prelude hiding (takeWhile,lookup)
 import Data.Char
@@ -20,10 +22,6 @@ data DocMode = forall a . Mode {
       format::Format a
     }
 
-literal::DocMode 
-literal = Mode {name = "literal", parser = pure (), format = Right fmt}
-    where fmt = const Right
-          
 runParser::Parser a->Text->a
 runParser p t = either (flail t) id $ parseOnly p t
     where flail t err = error $ concat ["Parser failed with error '",err,"' on text ",show t]
@@ -47,10 +45,9 @@ text = T.concat . reverse <$> chunks []
           post acc chunk = case T.splitAt (T.length chunk - 4) chunk of
                              (c,"\\>>>") -> chunks $ ">>>":c:acc
                              (c,x) -> return $ headOf x: c : acc
-          headOf x = case T.head x of
-                       '>' -> ""
-                       x   -> T.singleton x
-foo = takeText
+          headOf x 
+              | T.drop 1 x /= ">>>" = if x /= ">>>" then x else ""
+              | otherwise           = T.take 1 x
 
 -- Parses the body of a command, returning the name and options
 command::Parser (Text,Text)
@@ -58,21 +55,19 @@ command = whitespace *> ((,) <$> name <*> rest) <* endOfLine
     where whitespace = skipWhile (\c -> isSpace c && c /= '\n')
           name = takeWhile $ inClass "a-zA-Z0-9-"
           rest = takeTill (== '\n')
+-- This is safe to use at the end of a file
+pair::DocMode->Map Text DocMode->Parser [Element]
+pair def modes = (uncurry normalize .) . combine <$> command <*> text
+    where combine (name,args) = apply (getMode name) args  
+          getMode m     =  maybe (error $ "Couldn't find mode " ++ show m) id $ lookup m modes
+          defaultMode old new  = [old, fst $ apply def "" new]
+          normalize old = maybe [old] (defaultMode old)
 
--- This is moderately difficult.
--- Has lots of bugs in it.
-parseStream::DocMode->Map Text DocMode->Parser [Element]
-parseStream def modes =  (:) <$> start <*> (reverse <$> rest)
-    where defMode = fst . apply def ""
-          start =  defMode <$> text
-          rest = (endOfInput *> pure []) <|> (pair <*> rest)
-          pair = do
-            (name,args) <- command
-            let mode = maybe (error $ "Couldn't find mode " ++ show name) id $ lookup name modes
-            (elem,remain) <- apply mode args <$> text
-            pure $ maybe (elem:) (\x-> ((defMode x):) . (elem:)) remain
+stream::DocMode->Map Text DocMode->Parser [Element]
+stream def modes = combine <$> text <*> many (pair def modes) 
+    where combine start rest = (fst $ apply def "" start) : concat rest
 
-testStream = parseStream literal (fromList [("literal",literal)])
-
--- Parse text; if we're at the end of input fail
-test p = runParser p . T.pack
+parsePresentation::DocMode->[DocMode]->Text->[Element]
+parsePresentation def modes = flail . parseOnly (stream def $ mkModes modes)
+    where flail = either (\err-> error $ "Failed to parse presentation, with error" ++ err) id
+          mkModes = fromList . map (\m->(name m,m))
