@@ -46,7 +46,11 @@ text = T.concat . reverse <$> chunks []
           stateMachine _ _    = Just 0
           post acc chunk = case T.splitAt (T.length chunk - 4) chunk of
                              (c,"\\>>>") -> chunks $ ">>>":c:acc
-                             (c,x) -> return $ T.take 1 x: c : acc
+                             (c,x) -> return $ headOf x: c : acc
+          headOf x = case T.head x of
+                       '>' -> ""
+                       x   -> T.singleton x
+foo = takeText
 
 -- Parses the body of a command, returning the name and options
 command::Parser (Text,Text)
@@ -55,9 +59,8 @@ command = whitespace *> ((,) <$> name <*> rest) <* endOfLine
           name = takeWhile $ inClass "a-zA-Z0-9-"
           rest = takeTill (== '\n')
 
-
-
 -- This is moderately difficult.
+-- Has lots of bugs in it.
 parseStream::DocMode->Map Text DocMode->Parser [Element]
 parseStream def modes =  (:) <$> start <*> (reverse <$> rest)
     where defMode = fst . apply def ""
