@@ -42,11 +42,9 @@ text = T.concat . reverse <$> chunks []
           stateMachine 4  _   = Nothing
           stateMachine 0 '\\' = Just 1
           stateMachine 0 '>'  = Just 2
-          stateMachine 3 '>'  = Just 4
-          stateMachine 1 '>'  = Just 2
-          stateMachine 2 '>'  = Just 3
+          stateMachine n '>'  = Just $ n + 1
           stateMachine _ _    = Just 0
           post acc chunk = case T.splitAt (T.length chunk - 4) chunk of
                              (c,"\\>>>") -> chunks $ ">>>":c:acc
                              (c,_) -> return $ c : acc
-                                                
+                                          
