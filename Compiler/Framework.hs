@@ -4,25 +4,28 @@ module Compiler.Framework where
 import Compiler.Transitions
 import Data.Attoparsec.Text
 import Data.Text (Text)
+import Data.Map (Map)
 import Control.Applicative
 
-type Element = Either Transition Text
+type Element  = Either Transition Text
+type Format a = Either (a->Element) (a->Text->Element)
 
 data DocMode = forall a . Mode {
       name::Text,
       parser::Parser a,
-      format::a->Text->Element,
-      continues::Bool
+      format::Format a
     }
 
 literal::DocMode 
-literal = Mode {name = "literal", parser = pure (), format = const Right, continues = False}
+literal = Mode {name = "literal", parser = pure (), format = Right fmt}
+    where fmt = const Right
           
 runParser::Parser a->Text->a
 runParser p t = either (flail t) id $ parseOnly p t
     where flail t err = error $ concat ["Parser failed with error '",err,"' on text ",show t]
 
 apply::DocMode->Text->Text->(Element,Maybe Text)
-apply m opts text = let app (Mode _ p f _) = f (runParser p opts) -- Pattern match to deal with the existential
-                        partial = app m
-                    in if continues m then (partial text, Nothing) else (partial "", Just text)
+apply (Mode _ parse form) opts text = either l r form
+    where parsed = runParser parse opts
+          l    f = (f parsed, Just text)
+          r    f = (f parsed text, Nothing)
