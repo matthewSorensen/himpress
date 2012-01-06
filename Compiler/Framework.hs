@@ -46,7 +46,8 @@ text = T.concat . reverse <$> chunks []
           stateMachine _ _    = Just 0
           post acc chunk = case T.splitAt (T.length chunk - 4) chunk of
                              (c,"\\>>>") -> chunks $ ">>>":c:acc
-                             (c,_) -> return $ c : acc
+                             (c,x) -> return $ T.take 1 x: c : acc
+
 -- Parses the body of a command, returning the name and options
 command::Parser (Text,Text)
 command = whitespace *> ((,) <$> name <*> rest) <* endOfLine
@@ -59,20 +60,16 @@ command = whitespace *> ((,) <$> name <*> rest) <* endOfLine
 -- This is moderately difficult.
 parseStream::DocMode->Map Text DocMode->Parser [Element]
 parseStream def modes =  (:) <$> start <*> (reverse <$> rest)
-    where start = fst . apply def "" <$> text
+    where defMode = fst . apply def ""
+          start =  defMode <$> text
           rest = (endOfInput *> pure []) <|> (pair <*> rest)
-          neuter p = fst . apply p ""
           pair = do
             (name,args) <- command
             let mode = maybe (error $ "Couldn't find mode " ++ show name) id $ lookup name modes
             (elem,remain) <- apply mode args <$> text
-            pure $ maybe (elem:) (\x-> ((neuter def $ x):) . (elem:)) remain
+            pure $ maybe (elem:) (\x-> ((defMode x):) . (elem:)) remain
 
 testStream = parseStream literal (fromList [("literal",literal)])
-
-{--
-<check if end of input> undefined
---}
 
 -- Parse text; if we're at the end of input fail
 test p = runParser p . T.pack
