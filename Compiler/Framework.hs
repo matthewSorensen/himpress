@@ -13,7 +13,6 @@ import Control.Applicative
 
 type Text = T.Text
 
-type Element  = Either Transition Text
 type Format a = Either (a->Element) (a->Text->Element)
 
 data DocMode = forall a . Mode {

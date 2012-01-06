@@ -1,18 +1,30 @@
+{-# LANGUAGE TemplateHaskell, FlexibleContexts #-}
 module Compiler.Transitions where
 
 import Data.Text
+import Data.Map (Map)
+import Data.Lenses.Template
 
-data Transition = Transition {
-      classes::[(Text,Text)],
-      dataAttrs::[(Text,Text)],
-      _compose::Bool
-    } | Move Direction Bool
-                deriving(Show,Eq)
+type Element  = Either Text Transition
+
+data Transition = Transition Change Bool
+                  deriving(Show,Eq)
+
+data Change = Rotation Int | Move Direction | Scale Int
+            deriving(Show,Eq)
 
 data Direction = L | R | D | U | Coord (Int,Int)
                  deriving(Show,Eq)
 
-composable::Transition->Bool
-composable (Transition _ _ t) = t
-composable (Move _ t)         = t
+data Native = Native {classes_::[Text],attrs_::Map Text Text}
+              deriving(Show,Eq)
+$(deriveLenses ''Native)
 
+data PState = PState {
+      x_::Int,
+      y_::Int,
+      theta_::Int,
+      scale_::Int
+    } deriving (Show,Eq)
+
+$(deriveLenses ''PState)
