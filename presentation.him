@@ -1,4 +1,4 @@
->>> class slide
+>>> class slide 
 Have some plain text with your Haskell!
 >>> hask-box https://github.com/matthewSorensen/himpress "GitHub me!"
 module Nothing where (Foo,Bar(..))
@@ -33,3 +33,8 @@ mergesort x  = let (l,r) = foldl (\(x,y) z -> (z:y,x)) ([],[]) x
 >>> transition (150,300)
 Generated with [Himpress](https://github.com/matthewSorensen/himpress).
 Based on [impress.js](https://github.com/bartaz/impress.js).
+\>>>
+\\>>>
+>>> slide-id overview
+>>> transition (1250,0)
+>>> attribute scale 3
