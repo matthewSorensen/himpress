@@ -3,7 +3,7 @@ long been threatening to write. As of now, the grand plan is something like:
 
 1) Build my own version of the main style-sheet - incorporating a nice modern Haskell mode. Something...solarized...?
 
-2) Some monstrosity, linking pandoc, Hscolor, and my own slide-layout DSL + tool
+2) Some ~~monstrosity~~ very elegant system, linking pandoc, Hscolor, and my own slide-layout DSL + tool
 
 3) ????
 
@@ -18,9 +18,12 @@ attempted.
 
 Todo:
 
-+ My own version of the CSS
-+ Build a mostly-blank template presentation
-+ Update from upstream
++ DocMode for HsColour
++ DocMode for Pandoc
++ DocMode for all of the cool transitions/effects
++ cabalize it
++ More robust front-end that exposes the configurability.
+
 
 ~~impress.js~~ himpress
 ============
