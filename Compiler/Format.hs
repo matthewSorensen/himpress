@@ -27,8 +27,8 @@ data FormatOpts = FormatOpts {
 defaultOpts = FormatOpts {meta = [],
                           title="",
                           headScripts = [], 
-                          scripts = ["impress.js","hask.js"],
-                          style = ["style.css"]}
+                          scripts = ["js/impress.js","js/hask.js"],
+                          style = ["css/style.css"]}
 
 formatSlide::Slide->Html
 formatSlide (nat,body) = applyAttrs nat $ applyClass nat $ H5.div $ preEscapedText body
@@ -49,7 +49,7 @@ formatPresentation opt slides =
       H5.body $ do
         addImpress $ H5.div $ do
                        fallback ! A5.class_ "fallback-message"
-                       mapM_ formatSlide slides
+                       mapM_ formatSlide $ slides
         mapM_ (mkScript . toValue) $ scripts opt
     where mkStyle s    = H5.link ! A5.rel "stylesheet" ! A5.type_ "text/css" ! A5.href s
           mkScript s   = (H5.script "") ! A5.type_ "text/javascript" ! A5.src s

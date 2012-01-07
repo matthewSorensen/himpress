@@ -1,12 +1,14 @@
-{-# LANGUAGE TemplateHaskell, FlexibleContexts #-}
+{-# LANGUAGE TemplateHaskell, OverloadedStrings, FlexibleContexts #-}
 module Compiler.Transitions where
 
-import Data.Text
+import Data.Text (Text)
 import Data.Map (Map)
-import Data.Set (Set)
+import Data.Set (Set,singleton)
 import Data.Monoid
 import Data.Lenses.Template
 import Data.Lenses (alter)
+
+type Slide = (Native,Text)
 
 type Element  = Either Text Transition
 type Transition = Either (Native,Bool) (Change,Bool)
@@ -21,7 +23,7 @@ data Native = Native {classes::Set Text,attrs::Map Text Text}
             deriving(Show,Eq)
 
 instance Monoid Native where
-    mempty = Native {classes = mempty, attrs = mempty}
+    mempty = Native {classes = singleton "step", attrs = mempty}
     (Native a b) `mappend` (Native c d) = Native (a `mappend` c) (b `mappend` d)
 
 data PState = PState {
