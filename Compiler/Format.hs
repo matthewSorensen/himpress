@@ -27,7 +27,7 @@ data FormatOpts = FormatOpts {
 defaultOpts = FormatOpts {meta = [],
                           title="",
                           headScripts = [], 
-                          scripts = ["js/impress.js","js/hask.js"],
+                          scripts = ["js/impress.js"],
                           style = ["css/style.css"]}
 
 formatSlide::Slide->Html

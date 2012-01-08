@@ -5,11 +5,12 @@ module Compiler.Modes
 
 import Compiler.Transitions
 import Compiler.Framework
-import Compiler.Modes.Text
 
+import Compiler.Modes.Text
+import Compiler.Modes.Haskell
 
 defaultMode = markdown
-allModes = concat [textModes,[next]]
+allModes = concat [textModes,haskellModes, [next]]
 
 
 next = Mode {name = "next", parser = return (), format = Left fmt}
