@@ -1,6 +1,6 @@
 >>> class slide 
 Have some plain text with your Haskell!
->>> haskel-box https://github.com/matthewSorensen/himpress GitHub me!
+>>> haskell-box https://github.com/matthewSorensen/himpress GitHub me!
 module Nothing where (Foo,Bar(..))
 
 import Baz hiding(That)
@@ -16,7 +16,7 @@ qsort (x:xs) = qsort smaller ++ x : qsort larger
         larger  = filter (>=x) xs
 qsort []     = []
 >>> move right
->>> haskell
+>>> hscolour
 mergesort [] = []
 mergesort [x] = [x]
 mergesort x  = let (l,r) = foldl (\(x,y) z -> (z:y,x)) ([],[]) x
@@ -29,10 +29,10 @@ mergesort x  = let (l,r) = foldl (\(x,y) z -> (z:y,x)) ([],[]) x
 >>> move right
 >>> class hs-logo
 >>> new-slide
->>> move 150 300
+>>> move 150 300 0
 Generated with [Himpress](https://github.com/matthewSorensen/himpress).
 
 Based on [impress.js](https://github.com/bartaz/impress.js).
 >>> id overview
->>> move 1250 0
+>>> move -1250 0 0
 >>> zoom 2

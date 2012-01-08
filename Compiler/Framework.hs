@@ -67,8 +67,11 @@ pair def modes = (uncurry normalize .) . combine <$> command <*> text
 
 -- This is where the parser bug mentioned in issue 1 lies - the text should be checked to be not null or whitespace.
 stream::DocMode->Map Text DocMode->Parser [Element]
-stream def modes = combine <$> text <*> many (pair def modes) 
-    where combine start rest = fst (apply def "" start) : concat rest
+stream def modes = text >>= (<$> rest) . renderIfNotEmpty
+    where rest = many (pair def modes)
+          renderIfNotEmpty t
+              | T.all isSpace t = concat
+              | otherwise       = (fst (apply def "" t):). concat
 
 parsePresentation::DocMode->[DocMode]->Text->[Element]
 parsePresentation def modes = flail . parseOnly (stream def $ mkModes modes)

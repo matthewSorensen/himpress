@@ -1,30 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Himpress &mdash; a Haskell-optimized presentation tool</title>    
-    <meta name="description" content="Himpress is a presentation tool optimzed for Haskell, and based on impress.js" />
-    <meta name="author" content="Matthew Sorensen"/>
-
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
-
-    <link href="css/style.css" rel="stylesheet" />
-</head>
-<body>
-<div id="impress" class="impress-not-supported">
-  <div class="fallback-message">
-    <p>
-      Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.
-    </p>
-    <p>
-      For the best experience please use the latest <b>Chrome</b> or <b>Safari</b> browser. Firefox 10 and Internet Explorer 10 <i>should</i> also handle it.
-    </p>
-  </div>
-    <div class="step slide" data-x="0" data-y="0">
-      Have some plain text with your haskell!
-      <div class="code" data-url="https://github.com/matthewSorensen/himpress" data-title="GitHub me!">
-      <pre class="haskell">
-<span class='hs-keyword'>module</span> <span class='hs-conid'>Nothing</span> <span class='hs-keyword'>where</span> <span class='hs-layout'>(</span><span class='hs-conid'>Foo</span><span class='hs-layout'>,</span><span class='hs-conid'>Bar</span><span class='hs-layout'>(</span><span class='hs-keyglyph'>..</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span>
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title></title><link rel="stylesheet" type="text/css" href="css/style.css"></head><body><div id="impress" class="impress-not-supported"><div class="fallback-message"><p>Your browser doesn&#39;t support the features required for impress.js</p><p>(For best results, use the latest WebKit-based browsers)</p></div><div class="slide step" data-z="0" data-y="0" data-x="0" data-scale="1"><p>Have some plain text with your Haskell!</p><div class="code"><pre class="haskell"><pre><span class='hs-keyword'>module</span> <span class='hs-conid'>Nothing</span> <span class='hs-keyword'>where</span> <span class='hs-layout'>(</span><span class='hs-conid'>Foo</span><span class='hs-layout'>,</span><span class='hs-conid'>Bar</span><span class='hs-layout'>(</span><span class='hs-keyglyph'>..</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span>
 
 <span class='hs-keyword'>import</span> <span class='hs-conid'>Baz</span> <span class='hs-varid'>hiding</span><span class='hs-layout'>(</span><span class='hs-conid'>That</span><span class='hs-layout'>)</span>
 
@@ -37,13 +12,8 @@
 <span class='hs-definition'>qsort</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>qsort</span> <span class='hs-varid'>smaller</span> <span class='hs-varop'>++</span> <span class='hs-varid'>x</span> <span class='hs-conop'>:</span> <span class='hs-varid'>qsort</span> <span class='hs-varid'>larger</span>
   <span class='hs-keyword'>where</span> <span class='hs-varid'>smaller</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>filter</span> <span class='hs-layout'>(</span><span class='hs-varop'>&lt;</span><span class='hs-varid'>x</span><span class='hs-layout'>)</span>  <span class='hs-varid'>xs</span>
         <span class='hs-varid'>larger</span>  <span class='hs-keyglyph'>=</span> <span class='hs-varid'>filter</span> <span class='hs-layout'>(</span><span class='hs-varop'>&gt;=</span><span class='hs-varid'>x</span><span class='hs-layout'>)</span> <span class='hs-varid'>xs</span>
-<span class='hs-definition'>qsort</span> <span class='hs-conid'>[]</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>	
-      </pre>
-      </div>
-    </div>
-    <div class="step" data-x="1000" data-y="0">
-      <pre class="haskell">
-<span class='hs-definition'>mergesort</span> <span class='hs-conid'>[]</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>
+<span class='hs-definition'>qsort</span> <span class='hs-conid'>[]</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>
+</pre></pre><hr><a href="https://github.com/matthewSorensen/himpress">GitHub me!</a></div></div><div class="step" data-z="0" data-y="0" data-x="1000" data-scale="1"><pre class="haskell"><pre><span class='hs-definition'>mergesort</span> <span class='hs-conid'>[]</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>
 <span class='hs-definition'>mergesort</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>x</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>=</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>x</span><span class='hs-keyglyph'>]</span>
 <span class='hs-definition'>mergesort</span> <span class='hs-varid'>x</span>  <span class='hs-keyglyph'>=</span> <span class='hs-keyword'>let</span> <span class='hs-layout'>(</span><span class='hs-varid'>l</span><span class='hs-layout'>,</span><span class='hs-varid'>r</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>foldl</span> <span class='hs-layout'>(</span><span class='hs-keyglyph'>\</span><span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-layout'>,</span><span class='hs-varid'>y</span><span class='hs-layout'>)</span> <span class='hs-varid'>z</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-layout'>(</span><span class='hs-varid'>z</span><span class='hs-conop'>:</span><span class='hs-varid'>y</span><span class='hs-layout'>,</span><span class='hs-varid'>x</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-conid'>[]</span><span class='hs-layout'>,</span><span class='hs-conid'>[]</span><span class='hs-layout'>)</span> <span class='hs-varid'>x</span>
                <span class='hs-keyword'>in</span> <span class='hs-varid'>merge</span> <span class='hs-layout'>(</span><span class='hs-varid'>mergesort</span> <span class='hs-varid'>l</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>mergesort</span> <span class='hs-varid'>r</span><span class='hs-layout'>)</span>
@@ -52,20 +22,5 @@
         <span class='hs-varid'>merge</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-layout'>(</span><span class='hs-varid'>y</span><span class='hs-conop'>:</span><span class='hs-varid'>ys</span><span class='hs-layout'>)</span>
           <span class='hs-keyglyph'>|</span> <span class='hs-varid'>x</span> <span class='hs-varop'>&lt;=</span> <span class='hs-varid'>y</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>x</span> <span class='hs-conop'>:</span> <span class='hs-varid'>merge</span> <span class='hs-varid'>xs</span> <span class='hs-layout'>(</span><span class='hs-varid'>y</span><span class='hs-conop'>:</span><span class='hs-varid'>ys</span><span class='hs-layout'>)</span>
           <span class='hs-keyglyph'>|</span> <span class='hs-varid'>otherwise</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>y</span> <span class='hs-conop'>:</span> <span class='hs-varid'>merge</span> <span class='hs-layout'>(</span><span class='hs-varid'>x</span><span class='hs-conop'>:</span><span class='hs-varid'>xs</span><span class='hs-layout'>)</span> <span class='hs-varid'>ys</span>
-      </pre>
-    </div>
-    <div class="step hs-logo" data-x="2000" data-y="0">
-     </div>
-    <div class="step" data-x="2150" data-y="300">
-      Generated with <a href="https://github.com/matthewSorensen/himpress" target="_blank">Himpress</a>.
-      <br/>
-      Based on <a href="https://github.com/bartaz/impress.js">impress.js</a>.
-    </div>
-    <div id="overview" class="step overview" data-x="1250" data-y="0" data-scale="3">
-    </div>
-</div>
-
-<script src="js/impress.js"></script>
-<script src="js/hask.js"></script>
-</body>
-</html>
+</pre></pre></div><div class="hs-logo step" data-z="0" data-y="0" data-x="2000" data-scale="1"></div><div class="step" data-z="0" data-y="300" data-x="2150" data-scale="1"><p>Generated with <a href="https://github.com/matthewSorensen/himpress">Himpress</a>.</p>
+<p>Based on <a href="https://github.com/bartaz/impress.js">impress.js</a>.</p></div><div class="step" id="overview" data-z="0" data-y="300" data-x="900" data-scale="3"></div></div><script type="text/javascript" src="js/impress.js"></script></body></html>
