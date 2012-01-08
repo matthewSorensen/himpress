@@ -33,7 +33,9 @@ zoom = Mode {name = "zoom", parser = parseMag, format = Left (Right . Right . (,
 -- rotate integer
 -- rotate integer integer
 -- rotate integer integer integer
-rotate = Mode { name = "rotate", parser = skipSpace *> signed decimal >>= parse3 . pack . show, format = Left (Right . Left . (,True) . native)}
+rotate = Mode { name = "rotate", 
+                parser = skipSpace *> signed decimal >>= parse3 . pack . show, 
+                format = Left (Right . Left . (,True) . native)}
     where native set = mempty {attrs = set}
           parse3 i = (singleton "data-rotate" i <$ (skipSpace *> endOfInput)) <|> higher (singleton "data-rotate-x" i)
           higher x = addDim "data-rotate-y" x >>= addDim "data-rotate-z"

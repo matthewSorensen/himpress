@@ -5,9 +5,9 @@ module Compiler.Format
 
 import Compiler.Transitions (Slide,Native (..))
 
-import Data.Set (fold)
+import Data.Set (toList)
 import Data.Map (foldrWithKey)
-import Data.Text (Text)
+import Data.Text (Text,intercalate)
 import Data.Monoid
 import Control.Monad (mapM_)
 
@@ -35,7 +35,8 @@ formatSlide (nat,body) = applyAttrs nat $ applyClass nat $ H5.div body
     where applyAttrs nat = flip (foldrWithKey addAttr) (attrs nat)
           addAttr name val = (! (customAttribute (textTag name) $ toValue val))
           applyClass nat = (! toClass nat) 
-          toClass = A5.class_ . toValue . fold ((flip mappend "" .). mappend) mempty . classes
+          toClass = A5.class_ . toValue . intercalate " " . toList . classes
+          
 
 formatPresentation::FormatOpts->[Slide]->Html
 formatPresentation opt slides = 

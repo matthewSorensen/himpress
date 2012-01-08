@@ -28,7 +28,7 @@ mergesort x  = let (l,r) = foldl (\(x,y) z -> (z:y,x)) ([],[]) x
           | otherwise = y : merge (x:xs) ys
 >>> move right
 >>> class hs-logo
->>> next
+>>> new-slide
 >>> move 150 300
 Generated with [Himpress](https://github.com/matthewSorensen/himpress).
 

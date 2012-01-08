@@ -65,6 +65,7 @@ pair def modes = (uncurry normalize .) . combine <$> command <*> text
                | otherwise         = [old, fst $ apply def "" new]
           normalize old = maybe [old] (defaultMode old)
 
+-- This is where the parser bug mentioned in issue 1 lies - the text should be checked to be not null or whitespace.
 stream::DocMode->Map Text DocMode->Parser [Element]
 stream def modes = combine <$> text <*> many (pair def modes) 
     where combine start rest = fst (apply def "" start) : concat rest
