@@ -3,22 +3,30 @@ Currently supported modes:
 
 Various markup languages, all of which (other than html) are supplied by pandoc.
 Text without a specified mode is parsed as markdown.
-
 >>> markdown
 >>> latex
 >>> rst
 >>> textile
 >>> html
-
 Literal text, which is escaped and inserted into a pre tag:
 >>> literal
-
 Highlights the following text as Haskell:
 >>> hscolour
-
 Highlights the following text as Haskell and puts it in an emphasized box:
 >>> haskell-box
 >>> haskell-box <url>
 >>> haskell-box <url> <title>
 (uses the optional url and title to construct a link to the source, if one is provided.)
 
+Various spatial moves:
+>>> move <direction>
+where direction is either "up","down","left","right", or a triplet of signed integers representing
+change in x,y and z respectively ("1000 -1000 1000")
+>>> zooom <magnitude>
+where magnitude is either "in","out", or an integer (positive corresponds to out, and in and out both
+have an absolute value of 1). If a magnitude is
+not provided, defaults to "in".
+>>> rotate <integer>
+>>> rotate <integer> <integer>
+>>> rotate <integer> <integer> <integer>
+Rotation - one integer corresponds to 2d rotation, and two or more 3d, representing x,y,z respectively).

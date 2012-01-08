@@ -8,6 +8,7 @@ import Data.Char
 import Compiler.Transitions
 import Data.Attoparsec.Text
 import qualified Data.Text as T
+import Data.Char (isSpace)
 import Data.Map (Map,lookup,fromList)
 import Control.Applicative
 
@@ -59,7 +60,9 @@ pair::DocMode->Map Text DocMode->Parser [Element]
 pair def modes = (uncurry normalize .) . combine <$> command <*> text
     where combine (name,args) = apply (getMode name) args  
           getMode m     =  maybe (error $ "Couldn't find mode " ++ show m) id $ lookup m modes
-          defaultMode old new  = [old, fst $ apply def "" new]
+          defaultMode old new  
+               | T.all isSpace new = [old]
+               | otherwise         = [old, fst $ apply def "" new]
           normalize old = maybe [old] (defaultMode old)
 
 stream::DocMode->Map Text DocMode->Parser [Element]
