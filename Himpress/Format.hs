@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Compiler.Format 
+module Himpress.Format 
     (FormatOpts (..), defaultOpts, formatPresentation)
         where
 
-import Compiler.Transitions (Slide,Native (..))
+import Himpress.Transitions (Slide,Native (..))
 
 import Data.Set (toList)
 import Data.Map (foldrWithKey)

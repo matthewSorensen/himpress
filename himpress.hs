@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-import Compiler.Framework
-import Compiler.Compile
-import Compiler.Format
-import Compiler.Modes
+import Himpress.Framework
+import Himpress.Compile
+import Himpress.Format
+import Himpress.Modes
 
 import System (getArgs)
 import Prelude hiding (writeFile,readFile)

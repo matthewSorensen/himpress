@@ -1,5 +1,5 @@
 >>> class slide 
-Have some plain text with your Haskell!
+Have some plain text with your Haskell! \\\\\>>>
 >>> haskell-box https://github.com/matthewSorensen/himpress GitHub me!
 module Nothing where (Foo,Bar(..))
 

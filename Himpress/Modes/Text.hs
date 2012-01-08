@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Compiler.Modes.Text 
+module Himpress.Modes.Text
     (markdown,textModes)
     where
-import Compiler.Framework
+import Himpress.Framework
 -- :( :( :( Pandoc should be able to deal with Text
 import Data.Text (unpack)
 import Text.Pandoc.Writers.HTML (writeHtmlString)

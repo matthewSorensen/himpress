@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell, OverloadedStrings, FlexibleContexts #-}
-module Compiler.Transitions where
+module Himpress.Transitions where
 
 import Data.Text (Text)
 import Data.Map (Map)

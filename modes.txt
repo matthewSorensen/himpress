@@ -30,3 +30,14 @@ not provided, defaults to "in".
 >>> rotate <integer> <integer>
 >>> rotate <integer> <integer> <integer>
 Rotation - one integer corresponds to 2d rotation, and two or more 3d, representing x,y,z respectively).
+
+Starts a new slide, but otherwise has no effect:
+>>> new-slide
+
+Add a list of css classes to the current slide:
+>>> class <class name+>
+
+Sets the current slide id:
+>>> id <slide id>
+Add an arbitrary attribute to the current slide:
+>>> attribute <attribute name> <value>

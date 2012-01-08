@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings, TupleSections #-}
-module Compiler.Modes.Haskell 
+module Himpress.Modes.Haskell 
     (haskellModes)
     where
 
-import Compiler.Framework
+import Himpress.Framework
 
 import Data.Text (unpack)
 import Data.Attoparsec.Text
@@ -25,7 +25,7 @@ parseCredit = skipSpace *> ((Nothing <$ endOfInput) <|> (url >>= title))
           title t = skipSpace *> ((Just (t,t) <$ endOfInput) <|> ((Just . (t,)) <$> takeText))
 
 form cred src = (! A5.class_ "code") $ H5.div $ colourize src >> maybe (return ()) makeLink cred
-    where makeLink (href,text) = H5.hr >> H5.a (toHtml text) ! A5.href (toValue href)
+    where makeLink (href,text) = H5.hr >> H5.a (toHtml text) ! A5.href (toValue href) ! A5.target "_blank"
 
 colour = Mode {name = "hscolour", 
                parser = return (), 

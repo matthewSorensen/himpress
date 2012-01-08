@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings, TupleSections #-}
-module Compiler.Modes.Transitions 
+module Himpress.Modes.Transitions 
     (transitionsModes)
     where
 
-import Compiler.Transitions
-import Compiler.Framework
+import Himpress.Transitions
+import Himpress.Framework
 
 import Data.Attoparsec.Text hiding (D)
 import Data.Attoparsec.Combinator
@@ -14,7 +14,7 @@ import Data.Set (insert)
 import Data.Text (pack,strip)
 import Data.Monoid
 import Data.Char (isSeparator)
--- class <class lies>
+-- class <class list>
 transitionsModes = [new,slideId,classMode,attribute]
 -- Emit a non-composable null move to start a new slide.
 new = Mode {name = "new-slide", parser = return (), format = Left fmt}

@@ -1,9 +1,9 @@
 {-# LANGUAGE TupleSections, OverloadedStrings #-}
-module Compiler.Compile 
+module Himpress.Compile 
     (compile)
         where
 
-import Compiler.Transitions
+import Himpress.Transitions
 import Data.Lenses (fetch)
 import Data.Monoid
 import Data.List (mapAccumL)

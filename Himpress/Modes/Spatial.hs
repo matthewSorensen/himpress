@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings, TupleSections #-}
-module Compiler.Modes.Spatial
+module Himpress.Modes.Spatial
     (spatialModes)
         where
-import Compiler.Framework
-import Compiler.Transitions
+import Himpress.Framework
+import Himpress.Transitions
 
 import Data.Attoparsec.Text hiding (D)
 import Data.Attoparsec.Combinator

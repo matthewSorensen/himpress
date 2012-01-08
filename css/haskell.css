@@ -13,12 +13,13 @@ div.code a {
     color: #268bd2;/* blue */
 }
 
-pre.haskell {
+pre.haskell, pre.literal {
     font-family: monospace;
     font-size: 24px;
     line-height: 28px;
     letter-spacing: -1px;
 } 
+pre.literal {background-color: #eee8d5;}
 .hs-keyglyph {color: #2aa198;}/* cyan*/
 .hs-layout {color:  #dc322f;}/* red */
 .hs-comment a {color: #cb4b16;}/* orange*/

@@ -1,11 +1,11 @@
 {-# LANGUAGE ExistentialQuantification, OverloadedStrings #-}
-module Compiler.Framework 
+module Himpress.Framework 
     (Element,Format,DocMode (..),parsePresentation)
         where
 
 import Prelude hiding (takeWhile,lookup)
 import Data.Char
-import Compiler.Transitions
+import Himpress.Transitions
 import Data.Attoparsec.Text
 import qualified Data.Text as T
 import Data.Char (isSpace)
