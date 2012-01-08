@@ -15,11 +15,10 @@ import Text.Pandoc.Readers.Textile
 import Text.Pandoc.Readers.RST
 import Text.Pandoc.Readers.LaTeX
 
-import Text.Blaze.Renderer.Text (renderHtml)
-import Text.Blaze ((!),toHtml)
+import Text.Blaze ((!),toHtml,preEscapedString,preEscapedText)
 import Text.Blaze.Html5 (pre)
 import Text.Blaze.Html5.Attributes (class_)
-import Data.Text.Lazy (toStrict)
+
 
 markdown = pandoc "markdown" readMarkdown
 textModes = [html
@@ -29,12 +28,12 @@ textModes = [html
             ,pandoc "rst"     readRST                     
             ,pandoc "latex"   readLaTeX]
 -- Just echo a section of html out.
-html = Mode {name = "html", parser = return (), format = Right $ const $ Left}
+html = Mode {name = "html", parser = return (), format = Right $ const $ Left . preEscapedText}
 -- Escape a section of text and enclose it in a pre-tag
 literal = Mode {name = "literal", parser = return (), format = Right $ const makePre}
-    where makePre x = Left $ toStrict $ renderHtml $ (pre $ toHtml x) ! class_ "literal"
+    where makePre x = Left $ (pre $ toHtml x) ! class_ "literal"
 
 pandoc n reader = Mode {name = n, parser = return (), format = Right $ pandocify reader}
-    where pandocify r _ = Left . pack . writeHtmlString writerOpts .  r parserState .  unpack
+    where pandocify r _ = Left . preEscapedString . writeHtmlString writerOpts .  r parserState .  unpack
           parserState = defaultParserState
           writerOpts  = defaultWriterOptions {writerHtml5 = False, writerStandalone = False}

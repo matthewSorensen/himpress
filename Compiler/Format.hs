@@ -31,7 +31,7 @@ defaultOpts = FormatOpts {meta = [],
                           style = ["css/style.css"]}
 
 formatSlide::Slide->Html
-formatSlide (nat,body) = applyAttrs nat $ applyClass nat $ H5.div $ preEscapedText body
+formatSlide (nat,body) = applyAttrs nat $ applyClass nat $ H5.div body
     where applyAttrs nat = flip (foldrWithKey addAttr) (attrs nat)
           addAttr name val = (! (customAttribute (textTag name) $ toValue val))
           applyClass nat = (! toClass nat) 

@@ -24,7 +24,7 @@ import Language.Haskell.HsColour
 
 haskellModes = [haskBox,colour]
 
-haskBox = Mode {name = "haskell-box",parser = parseCredit,format = Right $ ((Left . renderStrict) .) . form}
+haskBox = Mode {name = "haskell-box",parser = parseCredit,format = Right $ (Left .). form}
     
 
 parseCredit::Parser (Maybe (Text,Text))
@@ -38,7 +38,7 @@ form cred src = (! A5.class_ "code") $ H5.div $ colourize src >> maybe mempty ma
 
 colour = Mode {name = "hscolour", 
                parser = return (), 
-               format = Right $ const $ Left . renderStrict . colourize}
+               format = Right $ const $ Left . colourize}
 
 -- There is soooo much wrong with this function.
 -- First, no native default ColourPrefs - I think the undefined is safe.
@@ -47,4 +47,3 @@ colour = Mode {name = "hscolour",
 colourize = makePre . hscolour CSS undefined False True "" False . unpack 
     where makePre = (! A5.class_ "haskell") . H5.pre . preEscapedString
 
-renderStrict = toStrict . renderHtml

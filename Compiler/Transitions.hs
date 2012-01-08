@@ -7,10 +7,11 @@ import Data.Set (Set,singleton)
 import Data.Monoid
 import Data.Lenses.Template
 import Data.Lenses (alter)
+import Text.Blaze (Html)
 
-type Slide = (Native,Text)
+type Slide = (Native,Html)
 
-type Element  = Either Text Transition
+type Element  = Either  Html Transition
 type Transition = Either (Native,Bool) (Change,Bool)
 
 data Change = Move Direction | Scale Int

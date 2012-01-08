@@ -8,9 +8,10 @@ import Data.Monoid
 import Data.List (mapAccumL)
 import Data.Text (Text,pack,unlines)
 import Data.Map (fromList)
+import Text.Blaze (Html,toHtml)
 
 -- Protoslides - ie. slides with a bunch of text and un-composed transitions.
-type PSlide = ([Text],[Transition])
+type PSlide = ([Html],[Transition])
 emptyPSlide = ([],[])
 
 splitIntoPSlides::[Element]->[PSlide]
@@ -51,4 +52,4 @@ compile::(Int,Int)->[Element]->[Slide]
 compile size = snd . mapAccumL buildSlide mempty . splitIntoPSlides
     where buildSlide st (body,trans) = let (nat,pstate) = compose size trans
                                            st' = st `mappend` pstate
-                                       in (st',(nat `mappend` toNative st', unlines body))
+                                       in (st',(nat `mappend` toNative st', toHtml body))
