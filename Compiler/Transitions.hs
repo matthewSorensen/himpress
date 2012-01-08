@@ -48,5 +48,5 @@ sizeOf::(Int,Int)->Direction->(Int,Int)
 sizeOf _ (Coord i) = i
 sizeOf (x,_) L     = (-x,0)
 sizeOf (x,_) R     = ( x,0)
-sizeOf (_,y) D     = (0,-y)
-sizeOf (_,y) U     = (0,y)
+sizeOf (_,y) D     = (0,y)
+sizeOf (_,y) U     = (0,-y)

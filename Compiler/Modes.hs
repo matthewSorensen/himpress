@@ -8,9 +8,10 @@ import Compiler.Framework
 
 import Compiler.Modes.Text
 import Compiler.Modes.Haskell
+import Compiler.Modes.Spatial
 
 defaultMode = markdown
-allModes = concat [textModes,haskellModes, [next]]
+allModes = concat [textModes,haskellModes,spatialModes,[next]]
 
 
 next = Mode {name = "next", parser = return (), format = Left fmt}
