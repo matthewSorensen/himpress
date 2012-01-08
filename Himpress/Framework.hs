@@ -10,7 +10,7 @@ import Data.Attoparsec.Text
 import qualified Data.Text as T
 import Data.Char (isSpace)
 import Data.Map (Map,lookup,fromList)
-import Control.Applicative
+import Control.Applicative hiding (many)
 
 type Text = T.Text
 

@@ -6,8 +6,7 @@ module Himpress.Modes.Transitions
 import Himpress.Transitions
 import Himpress.Framework
 
-import Data.Attoparsec.Text hiding (D)
-import Data.Attoparsec.Combinator
+import Data.Attoparsec.Text 
 import Control.Applicative
 import Data.Map (singleton)
 import Data.Set (insert)
