@@ -41,14 +41,14 @@ compose size = foldl append (mempty,mempty)
 
 toNative::PState->Native
 toNative p = Native {classes = mempty, attrs = fromList [
-                                ("data-scale", str scale p)
+                                ("data-scale", pack $ show $ 1 + fetch p scale)
                                ,("data-x", str x p)
                                ,("data-y", str y p)
                                ]}
     where str lens = pack . show . flip fetch lens
 
 compile::(Int,Int)->[Element]->[Slide]
-compile size = snd . mapAccumL buildSlide startPState . splitIntoPSlides
+compile size = snd . mapAccumL buildSlide mempty . splitIntoPSlides
     where buildSlide st (body,trans) = let (nat,pstate) = compose size trans
                                            st' = st `mappend` pstate
                                        in (st',(nat `mappend` toNative st', unlines body))

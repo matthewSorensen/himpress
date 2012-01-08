@@ -38,8 +38,6 @@ instance Monoid PState where
     mempty = PState 0 0 0
     (PState a b c) `mappend` (PState d e f) = PState (a+d) (b+e) (c+f)
 
-startPState = PState 0 0 1
-
 updateState::(Int,Int)->Change->PState->PState
 updateState _ (Scale i)  = alter scale (+i)
 updateState size (Move dir) = alter x (+dx) . alter y (+dy)
