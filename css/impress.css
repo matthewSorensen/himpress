@@ -21,7 +21,7 @@ body {
 b, strong { font-weight: bold }
 i, em { font-style: italic}
 
-a {color: #268bd2;}
+a {color: #268bd2; text-decoration: none}
 
 /* COMMON STEP STYLES */
 
