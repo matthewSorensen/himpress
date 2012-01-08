@@ -5,7 +5,7 @@ module Himpress.Modes.Spatial
 import Himpress.Framework
 import Himpress.Transitions
 
-import Data.Attoparsec.Text
+import Data.Attoparsec.Text hiding (D)
 import Data.Attoparsec.Combinator
 import Control.Applicative
 import Data.Map (singleton,insert)

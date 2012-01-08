@@ -10,15 +10,6 @@ Maintainer:          scholl.ma@gmail.com
 Copyright:           2012, Matthew Sorensen
 Category:            Text
 Build-type:          Simple
-Cabal-version:       >=1.2
-Executable: himpress
-Main-is: himpress.hs  
-  -- Packages needed in order to build this package.
-Build-depends:  text, base, bytestring, haskell98, blaze-html, containers, attoparsec, pandoc, hscolour, lenses, attoparsec-text
-  
-  -- Modules not exported by this package.
-  -- Other-modules:       
-  
-  -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
-  -- Build-tools:         
-  
+Executable:          himpress
+Main-is:             himpress.hs  
+Build-depends:       text, base, haskell98, blaze-html, containers, attoparsec >= 0.10, pandoc, hscolour, lenses
