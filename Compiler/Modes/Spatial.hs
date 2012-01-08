@@ -39,27 +39,3 @@ rotate = Mode { name = "rotate", parser = skipSpace *> signed decimal >>= parse3
           higher x = addDim "data-rotate-y" x >>= addDim "data-rotate-z"
           addDim attr set = skipSpace *> ((set <$ endOfInput) <|> (flip (insert attr) set . pack . show <$> signed decimal))
           
-{--
->>> rotate 90
->>> rotate 90 90
->>> rotate 90 90 90
->>> move up
->>> move left
->>> move right
->>> move 1000 1000 100
->>> move 1000 1000
-
-type Transition = Either (Native,Bool) (Change,Bool)
-
-data Change = Move Direction | Scale Int
-            deriving(Show,Eq)
-
-data Direction = L | R | D | U | Coord (Int,Int)
-                 deriving(Show,Eq)
-
-data Native = Native {classes::Set Text,attrs::Map Text Text}
-            deriving(Show,Eq)
---}
-
--- zoom (in | out | integer)
--- rotate integer
