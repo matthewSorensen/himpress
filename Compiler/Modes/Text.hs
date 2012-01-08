@@ -2,11 +2,9 @@
 module Compiler.Modes.Text 
     (markdown,textModes)
     where
-
 import Compiler.Framework
-
 -- :( :( :( Pandoc should be able to deal with Text
-import Data.Text (pack,unpack)
+import Data.Text (unpack)
 import Text.Pandoc.Writers.HTML (writeHtmlString)
 import Text.Pandoc.Shared
 import Text.Pandoc.Parsing
@@ -19,7 +17,6 @@ import Text.Blaze ((!),toHtml,preEscapedString,preEscapedText)
 import Text.Blaze.Html5 (pre)
 import Text.Blaze.Html5.Attributes (class_)
 
-
 markdown = pandoc "markdown" readMarkdown
 textModes = [html
             ,markdown
@@ -31,7 +28,7 @@ textModes = [html
 html = Mode {name = "html", parser = return (), format = Right $ const $ Left . preEscapedText}
 -- Escape a section of text and enclose it in a pre-tag
 literal = Mode {name = "literal", parser = return (), format = Right $ const makePre}
-    where makePre x = Left $ (pre $ toHtml x) ! class_ "literal"
+    where makePre x = Left $ pre (toHtml x) ! class_ "literal"
 
 pandoc n reader = Mode {name = n, parser = return (), format = Right $ pandocify reader}
     where pandocify r _ = Left . preEscapedString . writeHtmlString writerOpts .  r parserState .  unpack

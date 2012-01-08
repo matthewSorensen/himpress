@@ -1,12 +1,13 @@
 {-# LANGUAGE TupleSections, OverloadedStrings #-}
-module Compiler.Compile (compile)where
+module Compiler.Compile 
+    (compile)
+        where
 
-import Prelude hiding (unlines)
 import Compiler.Transitions
 import Data.Lenses (fetch)
 import Data.Monoid
 import Data.List (mapAccumL)
-import Data.Text (Text,pack,unlines)
+import Data.Text (pack)
 import Data.Map (fromList)
 import Text.Blaze (Html,toHtml)
 

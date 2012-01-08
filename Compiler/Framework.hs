@@ -64,7 +64,7 @@ pair def modes = (uncurry normalize .) . combine <$> command <*> text
 
 stream::DocMode->Map Text DocMode->Parser [Element]
 stream def modes = combine <$> text <*> many (pair def modes) 
-    where combine start rest = (fst $ apply def "" start) : concat rest
+    where combine start rest = fst (apply def "" start) : concat rest
 
 parsePresentation::DocMode->[DocMode]->Text->[Element]
 parsePresentation def modes = flail . parseOnly (stream def $ mkModes modes)

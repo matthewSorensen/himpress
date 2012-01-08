@@ -12,3 +12,13 @@ Text without a specified mode is parsed as markdown.
 
 Literal text, which is escaped and inserted into a pre tag:
 >>> literal
+
+Highlights the following text as Haskell:
+>>> hscolour
+
+Highlights the following text as Haskell and puts it in an emphasized box:
+>>> haskell-box
+>>> haskell-box <url>
+>>> haskell-box <url> <title>
+(uses the optional url and title to construct a link to the source, if one is provided.)
+

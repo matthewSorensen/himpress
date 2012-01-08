@@ -52,7 +52,7 @@ formatPresentation opt slides =
                        mapM_ formatSlide slides
         mapM_ (mkScript . toValue) $ scripts opt
     where mkStyle s    = H5.link ! A5.rel "stylesheet" ! A5.type_ "text/css" ! A5.href s
-          mkScript s   = (H5.script "") ! A5.type_ "text/javascript" ! A5.src s
+          mkScript s   = H5.script "" ! A5.type_ "text/javascript" ! A5.src s
           mkMeta (n,v) = H5.meta ! A5.name (toValue n) ! A5.content (toValue v)
           addImpress x = x ! A5.id "impress" ! A5.class_ "impress-not-supported"
 
