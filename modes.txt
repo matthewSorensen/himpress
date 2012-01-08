@@ -1,0 +1,14 @@
+Currently supported modes:
+
+
+Various markup languages, all of which (other than html) are supplied by pandoc.
+Text without a specified mode is parsed as markdown.
+
+>>> markdown
+>>> latex
+>>> rst
+>>> textile
+>>> html
+
+Literal text, which is escaped and inserted into a pre tag:
+>>> literal
