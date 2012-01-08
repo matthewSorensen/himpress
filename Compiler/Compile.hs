@@ -46,6 +46,7 @@ toNative p = Native {classes = mempty, attrs = fromList [
                                 ("data-scale", pack $ show $ 1 + fetch p scale)
                                ,("data-x", str x p)
                                ,("data-y", str y p)
+                               ,("data-z", str z p)
                                ]}
     where str lens = pack . show . flip fetch lens
 

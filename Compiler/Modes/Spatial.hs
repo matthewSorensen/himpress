@@ -8,23 +8,58 @@ import Compiler.Transitions
 import Data.Attoparsec.Text hiding (D)
 import Data.Attoparsec.Combinator
 import Control.Applicative
-import Data.Map (singleton)
+import Data.Map (singleton,insert)
 import Data.Text (pack)
 import Data.Monoid
 
 spatialModes = [move,zoom,rotate]
 
--- move (up | down | left | right | integer integer)
+-- move (up | down | left | right | integer integer integer)
 move = Mode {name = "move", parser = parseDirection, format = Left (Right . Right . (,True) . Move)}
     where parseDirection = skipSpace *> (choice (map mkParser directions) <|> coords <|> pure R)
           directions = [(L,"left"),(R,"right"),(U,"up"),(D,"down")]
           mkParser (dir,str) = dir <$ string str
-          coords = ((Coord .). (,)) <$> signed decimal <*> (skipSpace *> signed decimal)
+          coords = Coord <$> parseTriple
+          
+parseTriple = comb <$> spaceInt <*> spaceInt <*> spaceInt
+    where comb a b c = (a,b,c)
+          spaceInt = skipSpace *> signed decimal
+
 -- zoom (in | out | integer)
 zoom = Mode {name = "zoom", parser = parseMag, format = Left (Right . Right . (,True) . Scale)}
     where parseMag = skipSpace *> (zin <|> zout <|> signed decimal <|> pure (-1))
           zin  = -1 <$ string "in"
           zout =  1 <$ string "out"
 -- rotate integer
-rotate = Mode { name = "rotate", parser = skipSpace *> signed decimal, format = Left (Right . Left . (,True) . native)}
-    where native angle = mempty {attrs = singleton "data-rotate" (pack $ show angle)}
+-- rotate integer integer
+-- rotate integer integer integer
+rotate = Mode { name = "rotate", parser = skipSpace *> signed decimal >>= parse3 . pack . show, format = Left (Right . Left . (,True) . native)}
+    where native set = mempty {attrs = set}
+          parse3 i = (singleton "data-rotate" i <$ (skipSpace *> endOfInput)) <|> higher (singleton "data-rotate-x" i)
+          higher x = addDim "data-rotate-y" x >>= addDim "data-rotate-z"
+          addDim attr set = skipSpace *> ((set <$ endOfInput) <|> (flip (insert attr) set . pack . show <$> signed decimal))
+          
+{--
+>>> rotate 90
+>>> rotate 90 90
+>>> rotate 90 90 90
+>>> move up
+>>> move left
+>>> move right
+>>> move 1000 1000 100
+>>> move 1000 1000
+
+type Transition = Either (Native,Bool) (Change,Bool)
+
+data Change = Move Direction | Scale Int
+            deriving(Show,Eq)
+
+data Direction = L | R | D | U | Coord (Int,Int)
+                 deriving(Show,Eq)
+
+data Native = Native {classes::Set Text,attrs::Map Text Text}
+            deriving(Show,Eq)
+--}
+
+-- zoom (in | out | integer)
+-- rotate integer
