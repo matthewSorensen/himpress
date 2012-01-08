@@ -48,7 +48,7 @@ toNative p = Native {classes = mempty, attrs = fromList [
     where str lens = pack . show . flip fetch lens
 
 compile::(Int,Int)->[Element]->[Slide]
-compile size = snd . mapAccumL buildSlide mempty . splitIntoPSlides
+compile size = snd . mapAccumL buildSlide startPState . splitIntoPSlides
     where buildSlide st (body,trans) = let (nat,pstate) = compose size trans
                                            st' = st `mappend` pstate
                                        in (st',(nat `mappend` toNative st', unlines body))
