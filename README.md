@@ -18,12 +18,9 @@ attempted.
 
 Todo:
 
-+ DocMode for HsColour
-+ DocMode for Pandoc
-+ DocMode for all of the cool transitions/effects
-+ cabalize it
 + More robust front-end that exposes the configurability.
-
++ Demo presentation
++ DocModes for images, and...?
 
 ~~impress.js~~ himpress
 ============
