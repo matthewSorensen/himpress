@@ -44,7 +44,7 @@ compose size = foldl append (mempty,mempty)
 
 toNative::PState->Native
 toNative p = Native {classes = mempty, attrs = fromList [
-                                ("data-scale", pack $ show $ 1 + fetch p scale)
+                                ("data-scale", str scale p)
                                ,("data-x", str x p)
                                ,("data-y", str y p)
                                ,("data-z", str z p)

@@ -6,7 +6,7 @@ import Data.Map (Map)
 import Data.Set (Set,singleton)
 import Data.Monoid
 import Data.Lenses.Template
-import Data.Lenses (alter)
+import Data.Lenses (alter,fetch)
 import Text.Blaze (Html)
 
 type Slide = (Native,Html)
@@ -14,7 +14,7 @@ type Slide = (Native,Html)
 type Element  = Either  Html Transition
 type Transition = Either (Native,Bool) (Change,Bool)
 
-data Change = Move Direction | Scale Int
+data Change = Move Direction | Scale Float
             deriving(Show,Eq)
 
 data Direction = L | R | D | U | Coord (Int,Int,Int)
@@ -31,17 +31,17 @@ data PState = PState {
       x_::Int,
       y_::Int,
       z_::Int,
-      scale_::Int
+      scale_::Float
     } deriving (Show,Eq)
 
 $(deriveLenses ''PState)
 
 instance Monoid PState where
-    mempty = PState 0 0 0 0
-    (PState a b c d) `mappend` (PState e f j k) = PState (a+e) (b+f) (c+j) (d+k)
+    mempty = PState 0 0 0 1
+    (PState a b c d) `mappend` (PState e f j k) = PState (a+e) (b+f) (c+j) (d*k)
 
 updateState::(Int,Int)->Change->PState->PState
-updateState _ (Scale i)  = alter scale (+i)
+updateState _ (Scale i)     = alter scale (*i) 
 updateState size (Move dir) = alter z (+dz) . alter x (+dx) . alter y (+dy)
     where (dx,dy,dz) = sizeOf size dir
 

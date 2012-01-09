@@ -25,9 +25,9 @@ parseTriple = comb <$> spaceInt <*> spaceInt <*> spaceInt
     where comb a b c = (a,b,c)
           spaceInt = skipSpace *> signed decimal
 
--- zoom (in | out | integer)
+-- zoom (in | out | float)
 zoom = Mode {name = "zoom", parser = parseMag, format = Left (Right . Right . (,True) . Scale)}
-    where parseMag = skipSpace *> (zin <|> zout <|> signed decimal <|> pure (-1))
+    where parseMag = skipSpace *> (zin <|> zout <|> signed rational <|> pure (-1))
           zin  = -1 <$ string "in"
           zout =  1 <$ string "out"
 -- rotate integer

@@ -142,3 +142,11 @@ a {color: #268bd2; text-decoration: none}
 .impress-not-supported .fallback-message {
     display: block;
 }
+
+.title { font-size: 200px; }
+.center {text-align: center}
+.big { text-transform: uppercase; margin: 0; padding: 0; }
+.bold { font-weight: 800; }
+.light { font-weight: 400; }
+.extralight { font-weight: 300; letter-spacing: .1em; }
+.small { display: block; padding: 20px; font-size: 20px; font-weight: 600; }
