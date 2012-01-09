@@ -1,0 +1,89 @@
+>>> class title
+### Himpress ###
+>>> rotate -45 0 
+>>> move 100 300 0
+>>> class center-big
+###   **H** *askell +* **impress** *.js*   ###
+>>> rotate 0 90
+>>> move -2000
+Himpress is a tool designed to generate [prezi style](http://prezi.com) presentations using the newly-released [impress.js](https://github.com/bartaz/impress.js).
+
+Except the presentations are a bit more ***psychotic***.
+>>> move 1000 0 0
+>>> rotate 0 90 0
+>>> class hs-logo
+>>> new-slide
+>>> rotate 0 90 0
+>>> move 0 300 -100
+(Coincidentally, Himpress is written in Haskell)
+>>> move 0 0 -1000
+Think of Himpress as a "markdown" for impress.js:
+
+*index.him* ↬ **himpress** ↬ *index.html*
+>>> move down
+Himpress supports a number of different lightweight markup languages:
+>>> literal
+\>>> markdown
+*This is a test of how awesome Himpress' support for*
+\>>> textile
+bq. lots of different markups 
+\>>> html
+<span class="huge">is!</span>
+>>> move right
+Himpress can access all of impress.js' data attributes...
+>>> literal
+\>>> move 10 10 10
+By default, plain text is interpreted as markdown.
+\>>> move up
+This is another presentation step.
+\>>> rotate 90
+\>>> rotate 180 37 42
+\>>> zoom out
+\>>> zoom 3.5
+>>> move 0 900 0
+...as well as arbitrary attributes and css:
+>>> literal
+\>>> class huge
+This text will be big!
+\>>> move left
+\>>> id fooobar
+\>>> attribute data-awesomeness very very awesome
+This next slide's id is "fooobar" and it has a 
+data-awesome attribute value of "very very awesome!"
+>>> move left
+>>> class slide
+I wrote Himpress as a tool for presenting Haskell, so it also supports syntax highlighting for Haskell:
+>>> html
+<br/>
+>>> hscolour
+fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
+
+qsort :: (Ord a) => [a] -> [a]
+qsort (x:xs) = qsort smaller ++ x : qsort larger
+  where smaller = filter (<x)  xs
+        larger  = filter (>=x) xs
+qsort []     = []
+>>> html
+<br/>
+>>> markdown
+(Himpress could also support all of the [languages](http://hackage.haskell.org/package/highlighting-kate-0.2.10) supported by John MacFarlane's 
+ [highlighting-kate](http://johnmacfarlane.net/highlighting-kate/) library - I just haven't gotten around to it.)
+>>> move left
+**Want to use Himpress?**
+
+* Install the [Haskell platform](http://hackage.haskell.org/platform/)
+
+* Clone [Himpress](https://github.com/matthewSorensen/himpress)
+
+* Run *cabal install* to install the *himpress* executable
+
+>>> move 0 500 0
+However, Himpress is very alpha! Future plans include more intuitive model for the 3d aspect of impress.js,
+as well as some degree of documentation.
+>>> move 0 500 0
+>>> html
+<p>&copy; 2012, Matthew Sorensen.</p>
+<p>This is all made possible by Bartek Szopka's awesome work on Impress.js</p> 
+>>> id overview
+>>> move 0 -2000 0
+>>> zoom 5
