@@ -16,6 +16,7 @@ type PSlide = ([Html],[Transition])
 emptyPSlide = ([],[])
 
 splitIntoPSlides::[Element]->[PSlide]
+splitIntoPSlides []     = []
 splitIntoPSlides (l:ls) = out $ foldl split' (l,emptyPSlide `addToTuple` l,[]) ls
     where split' (prev,slide,acc) new
               | fusible prev new = (new, addToTuple slide new, acc)
