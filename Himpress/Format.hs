@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Himpress.Format 
-    (FormatOpts (..), defaultOpts, formatPresentation)
+    (FormatOpts (..), formatPresentation)
         where
 
 import Himpress.Transitions (Slide,Native (..))
@@ -23,12 +23,6 @@ data FormatOpts = FormatOpts {
       scripts::[Text],
       style::[Text]
     }
-
-defaultOpts = FormatOpts {meta = [],
-                          title="",
-                          headScripts = [], 
-                          scripts = ["js/impress.js"],
-                          style = ["css/style.css"]}
 
 formatSlide::Slide->Html
 formatSlide (nat,body) = applyAttrs nat $ applyClass nat $ H5.div body

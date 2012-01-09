@@ -12,4 +12,4 @@ Category:            Text
 Build-type:          Simple
 Executable:          himpress
 Main-is:             himpress.hs  
-Build-depends:       text, base, haskell98, blaze-html, containers, attoparsec >= 0.10, pandoc, hscolour, lenses
+Build-depends:       text, base, haskell98, blaze-html, containers, attoparsec >= 0.10, pandoc, hscolour, lenses, cmdargs
