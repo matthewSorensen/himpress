@@ -1,10 +1,9 @@
-
 Himpress
 --------
 
 [**H***askell* **impress** *.js*](http://matthewsorensen.github.com/himpress),
 
- + a tool for generating [impress.js](https://github.com/bartaz/impress.js) presentations from an analgam of various markdowns, markups, source code, and presentation-specific commands.
+ + a tool for generating [impress.js](https://github.com/bartaz/impress.js) presentations from an amalgam of various markdowns, markups, source code, and presentation-specific commands.
  + the end result of my attempts to avoid the annoyance that is {PowerPoint, OpenOffice/LibreOffice Impress, GoogleDocs, Prezi, Keynote, etc}.
  + the extension of the "Emacs über alles" principle to building presentations.
 
