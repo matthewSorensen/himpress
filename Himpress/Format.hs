@@ -46,6 +46,7 @@ formatPresentation opt slides =
                        fallback ! A5.class_ "fallback-message"
                        mapM_ formatSlide slides
         mapM_ (mkScript . toValue) $ scripts opt
+        H5.script "impress().init();"  ! A5.type_ "text/javascript"
     where mkStyle s    = H5.link ! A5.rel "stylesheet" ! A5.type_ "text/css" ! A5.href s
           mkScript s   = H5.script "" ! A5.type_ "text/javascript" ! A5.src s
           mkMeta (n,v) = H5.meta ! A5.name (toValue n) ! A5.content (toValue v)
