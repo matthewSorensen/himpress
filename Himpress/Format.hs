@@ -42,8 +42,8 @@ formatPresentation opt slides =
         mapM_ (mkStyle  . toValue) $ style opt
         mapM_ (mkScript . toValue) $ headScripts opt
       H5.body $ do
+        fallback ! A5.class_ "fallback-message"
         addImpress $ H5.div $ do
-                       fallback ! A5.class_ "fallback-message"
                        mapM_ formatSlide slides
         mapM_ (mkScript . toValue) $ scripts opt
         H5.script "impress().init();"  ! A5.type_ "text/javascript"

@@ -15,7 +15,6 @@ Incipient Creeping Featurism
  + Switch to [highlighting-kate](http://hackage.haskell.org/package/highlighting-kate-0.5.0.5) for syntax highlighting - although I don't really like this package.
  + A server to control presentations from a phone/other browser.
  + A better/higher-level set of presentation commands.
- + A mode to continuously recompile a file.
 
 LICENSE
 ---------
