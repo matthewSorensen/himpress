@@ -21,7 +21,8 @@ splitIntoPSlides (l:ls) = out $ foldl split' (l,emptyPSlide `addToTuple` l,[]) l
     where split' (prev,slide,acc) new
               | fusible prev new = (new, addToTuple slide new, acc)
               | otherwise = (new, emptyPSlide `addToTuple` new, reverseTuple slide : acc)
-          out (_,l,x) = reverse $ l:x
+          -- Reverse the last slide, then the entire presentation.
+          out (_,l,x) = reverse $ reverseTuple l :x
           reverseTuple (a,b) = (reverse a,reverse b)
           addToTuple (a,b) = either ((,b) . (:a)) ((a,) . (:b))
           -- Text , Text are on the same slide
