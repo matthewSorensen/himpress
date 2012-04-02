@@ -5,6 +5,7 @@ Description:         Himpress is a tool to generate html5 slideshows using impre
 Homepage:            https://github.com/matthewSorensen/himpress
 License:             BSD3
 License-file:        LICENSE
+Data-Files:          js/impress.min.js js/start.js css/style.css
 Author:              Matthew Sorensen
 Maintainer:          scholl.ma@gmail.com
 Copyright:           2012, Matthew Sorensen
@@ -13,3 +14,4 @@ Build-type:          Simple
 Executable:          himpress
 Main-is:             himpress.hs  
 Build-depends:       text, base, haskell98, blaze-html, containers, attoparsec >= 0.10, pandoc, hscolour, lenses, cmdargs, hinotify, filepath
+
