@@ -1,13 +1,254 @@
 <!DOCTYPE HTML>
-<html><head><meta charset="utf-8"><title>Himpress - Demonstration</title><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic"><link rel="stylesheet" type="text/css" href="style.css"></head><body><div id="impress" class="impress-not-supported"><div class="fallback-message"><p>Your browser doesn&#39;t support the features required for impress.js</p><p>(For best results, use the latest WebKit-based browsers)</p></div><div class="step title" data-z="0" data-y="0" data-x="0" data-scale="1.0"><h3 id="himpress">Himpress</h3></div><div class="center-big step" data-z="0" data-y="300" data-x="100" data-scale="1.0" data-rotate-y="0" data-rotate-x="-45"><h3 id="h-askell-impress-.js"><strong>H</strong> <em>askell +</em> <strong>impress</strong> <em>.js</em></h3></div><div class="step" data-z="0" data-y="300" data-x="1200" data-scale="1.0" data-rotate-y="90" data-rotate-x="0"><p>Himpress is a tool designed to generate <a href="http://prezi.com">prezi style</a> presentations using the newly-released <a href="https://github.com/bartaz/impress.js">impress.js</a>.</p>
-<p>Except the presentations are a bit more <strong><em>psychotic</em></strong>.</p></div><div class="hs-logo step" data-z="0" data-y="300" data-x="2200" data-scale="1.0" data-rotate-z="0" data-rotate-y="90" data-rotate-x="0"></div><div class="step" data-z="-100" data-y="600" data-x="2200" data-scale="1.0" data-rotate-z="0" data-rotate-y="90" data-rotate-x="0"><p>(Coincidentally, Himpress is written in Haskell)</p></div><div class="step" data-z="-1100" data-y="600" data-x="2200" data-scale="1.0"><p>Think of Himpress as a &quot;markdown&quot; for impress.js:</p>
-<p><em>index.him</em> ↬ <strong>himpress</strong> ↬ <em>index.html</em></p></div><div class="step" data-z="-1100" data-y="1600" data-x="2200" data-scale="1.0"><p>Himpress supports a number of different lightweight markup languages:</p><pre class="literal">&gt;&gt;&gt; markdown
+<html><head><meta charset="utf-8"><title></title><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic.css"><style type="text/css">/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/**
+ * This is a stylesheet for a demo presentation for impress.js
+ * 
+ * It is not meant to be a part of impress.js and is not required by impress.js.
+ * I expect that anyone creating a presentation for impress.js would create their own
+ * set of styles.
+ */
+body {
+    font-family: 'PT Sans', sans-serif;
+    min-height: 740px;
+    background: rgb(215, 215, 215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+
+    -webkit-font-smoothing: antialiased;
+}
+
+b, strong { font-weight: bold }
+i, em { font-style: italic}
+
+a {color: #268bd2; text-decoration: none}
+
+/* COMMON STEP STYLES */
+
+.step {
+    width: 900px;
+    padding: 40px;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-family: 'PT Serif', georgia, serif;
+
+    font-size: 48px;
+    line-height: 1.5;
+}
+
+/* fade out inactive slides */
+
+.step {
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.step:not(.active) {
+    opacity: 0.3;
+}
+
+/* STEP SPECIFIC STYLES */
+
+/* overview step. This would be really nice if we could make this a class. */
+#overview {
+    z-index: -1;
+    padding: 0;
+}
+#impress.step-overview .step {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+/*
+ * SLIDE STEP STYLES
+ *
+ * inspired by: http://html5slides.googlecode.com/svn/trunk/styles.css
+ *
+ * ;)
+ */
+
+.slide {
+    display: block;
+
+    width: 960px;
+    height: 700px;
+
+    padding: 40px 60px;
+
+    border-radius: 10px;
+
+    background-color: #fdf6e3; /* base3 */
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, .3);
+
+    font-family: 'Open Sans', Arial, sans-serif;
+
+    color: #073642; /* Base02 - yes, this is a misuse */
+     
+    font-size: 30px;
+    line-height: 36px;
+
+    letter-spacing: -1px;
+}
+
+.slide q {
+    display: block;
+    font-size: 50px;
+    line-height: 72px;
+
+    margin-top: 100px;
+}
+
+.slide q strong {
+    white-space: nowrap;
+}
+
+
+/* IMPRESS NOT SUPPORTED STYLES */
+
+.fallback-message {
+    font-family: sans-serif;
+    line-height: 1.3;
+    
+    display: none;
+    width: 780px;
+    padding: 10px 10px 1px;
+    margin: 20px auto;
+
+    border-radius: 10px;
+    background: #fdf6e3;
+}
+
+.fallback-message p {
+    margin-bottom: 10px;
+}
+
+.impress-not-supported .step {
+    position: relative;
+    opacity: 1;
+    margin: 20px auto;
+}
+
+.impress-not-supported .fallback-message {
+    display: block;
+}
+
+.title { font-size: 200px; }
+.center {text-align: center}
+.big { text-transform: uppercase; margin: 0; padding: 0; }
+.bold { font-weight: 800; }
+.light { font-weight: 400; }
+.extralight { font-weight: 300; letter-spacing: .1em; }
+.small { display: block; padding: 20px; font-size: 20px; font-weight: 600; }
+div.code {
+    display: block;
+    border-radius: 10px;
+    background-color: #eee8d5; /* base2 */
+    padding: 20px 20px 20px 20px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #657b83;/* base00 */
+    font-size: 18px;
+}
+
+div.code a {
+    color: #268bd2;/* blue */
+}
+
+pre.haskell, pre.literal {
+    font-family: monospace;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -1px;
+} 
+pre.literal {background-color: #eee8d5;}
+.hs-keyglyph {color: #2aa198;}/* cyan*/
+.hs-layout {color:  #dc322f;}/* red */
+.hs-comment a {color: #cb4b16;}/* orange*/
+.hs-keyword {color: #2aa198;}/* cyan */
+.hs-cpp {color: #cb4b16;}/* orange*/
+.hs-sel {/* I have no idea what this is for, and I'm too lazy to check the source. */}
+.hs-definition {color: #268bd2;}/* blue */
+.hs-varop {color: #268bd2;} /* blue */ 
+.hs-conop {color: #859900;}/* green */ 
+.hs-varid {color: #657b83;}/* base00 */
+.hs-conid {color: #b58900}/* yellow */
+.hs-comment {color: #dc322f}/* red */
+.hs-num, .hs-str, .hs-char {color: #2aa198;}/* cyan */
+
+div.hs-logo {
+    width: 700px;
+    padding-bottom: 400px;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI0ODFwdCIgaGVpZ2h0PSIzNDBwdCIgdmlld0JveD0iMCAwIDQ4MSAzNDAiIHZlcnNpb249IjEuMSI+PGRlZnM+PGNsaXBQYXRoPjxwYXRoIGQ9Ik0gMCAzNDAgTCA0ODEgMzQwIEwgNDgxIDAgTCAwIDAgTCAwIDM0MCBaIE0gMCAzNDAiLz48L2NsaXBQYXRoPjwvZGVmcz48Zz48cGF0aCBzdHlsZT0iZmlsbDogIzY2NjY2NiIgZD0iTSAwIDM0MCBMIDExMyAxNzAgTCAwIDAgTCA4NSAwIEwgMTk4IDE3MCBMIDg1IDM0MCBMIDAgMzQwIFogTSAwIDM0MCIvPjxwYXRoIHN0eWxlPSJmaWxsOiAjOTk5OTlBIiBkPSJNIDExMyAzNDAgTCAyMjcgMTcwIEwgMTEzIDAgTCAxOTggMCBMIDQyNSAzNDAgTCAzNDAgMzQwIEwgMjY5IDIzMyBMIDE5OCAzNDAgTCAxMTMgMzQwIFogTSAxMTMgMzQwIi8+PHBhdGggc3R5bGU9ImZpbGw6ICM2NjY2NjYiIGQ9Ik0gMzg3IDI0MSBMIDM1MCAxODQgTCA0ODIgMTg0LjI1IEwgNDgyIDI0MSBMIDM4NyAyNDEgWiBNIDM4NyAyNDEiLz48cGF0aCBzdHlsZT0iZmlsbDogIzY2NjY2NiIgZD0iTSAzMzEgMTU2IEwgMjkzIDk5IEwgNDgyIDk5IEwgNDgyIDE1NiBMIDMzMSAxNTYgWiBNIDMzMSAxNTYiLz48L2c+PC9zdmc+Cg==);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}</style></head><body><div class="fallback-message"><p>Your browser doesn&#39;t support the features required for impress.js</p><p>(For best results, use the latest WebKit-based browsers)</p></div><div class="impress-not-supported" id="impress"><div class="step title" data-z="0" data-y="0" data-x="0" data-scale="1.0"><h3 id="himpress">Himpress</h3></div><div class="center-big step" data-z="0" data-y="300" data-x="100" data-scale="1.0" data-rotate-y="0" data-rotate-x="-45"><h3 id="h-askell-impress-.js"><strong>H</strong> <em>askell +</em> <strong>impress</strong> <em>.js</em></h3></div><div class="step" data-z="0" data-y="300" data-x="1300" data-scale="1.0" data-rotate-y="90" data-rotate-x="0"><p>Himpress is a tool designed to generate <a href="http://prezi.com">prezi style</a> presentations using the newly-released <a href="https://github.com/bartaz/impress.js">impress.js</a>.</p>
+<p>Except the presentations are a bit more <strong><em>psychotic</em></strong>.</p></div><div class="hs-logo step" data-z="0" data-y="300" data-x="2300" data-scale="1.0" data-rotate-z="0" data-rotate-y="90" data-rotate-x="0"></div><div class="step" data-z="-100" data-y="600" data-x="2300" data-scale="1.0" data-rotate-z="0" data-rotate-y="90" data-rotate-x="0"><p>(Coincidentally, Himpress is written in Haskell)</p></div><div class="step" data-z="-1100" data-y="600" data-x="2300" data-scale="1.0"><p>Think of Himpress as a &quot;markdown&quot; for impress.js:</p>
+<p><em>index.him</em> ↬ <strong>himpress</strong> ↬ <em>index.html</em></p></div><div class="step" data-z="-1100" data-y="1800" data-x="2300" data-scale="1.0"><p>Himpress supports a number of different lightweight markup languages:</p><pre class="literal">&gt;&gt;&gt; markdown
 *This is a test of how awesome Himpress&#39; support for*
 &gt;&gt;&gt; textile
 bq. lots of different markups 
 &gt;&gt;&gt; html
 &lt;span class=&quot;huge&quot;&gt;is!&lt;/span&gt;
-</pre></div><div class="step" data-z="-1100" data-y="1600" data-x="3300" data-scale="1.0"><p>Himpress can access all of impress.js' data attributes...</p><pre class="literal">&gt;&gt;&gt; move 10 10 10
+</pre></div><div class="step" data-z="-1100" data-y="1800" data-x="3500" data-scale="1.0"><p>Himpress can access all of impress.js' data attributes...</p><pre class="literal">&gt;&gt;&gt; move 10 10 10
 By default, plain text is interpreted as markdown.
 &gt;&gt;&gt; move up
 This is another presentation step.
@@ -15,14 +256,14 @@ This is another presentation step.
 &gt;&gt;&gt; rotate 180 37 42
 &gt;&gt;&gt; zoom out
 &gt;&gt;&gt; zoom 3.5
-</pre></div><div class="step" data-z="-1100" data-y="2500" data-x="3300" data-scale="1.0"><p>...as well as arbitrary attributes and css:</p><pre class="literal">&gt;&gt;&gt; class huge
+</pre></div><div class="step" data-z="-1100" data-y="2700" data-x="3500" data-scale="1.0"><p>...as well as arbitrary attributes and css:</p><pre class="literal">&gt;&gt;&gt; class huge
 This text will be big!
 &gt;&gt;&gt; move left
 &gt;&gt;&gt; id fooobar
 &gt;&gt;&gt; attribute data-awesomeness very very awesome
 This next slide&#39;s id is &quot;fooobar&quot; and it has a 
 data-awesome attribute value of &quot;very very awesome!&quot;
-</pre></div><div class="slide step" data-z="-1100" data-y="2500" data-x="2200" data-scale="1.0"><p>I wrote Himpress as a tool for presenting Haskell, so it also supports syntax highlighting for Haskell:</p><br/>
+</pre></div><div class="slide step" data-z="-1100" data-y="2700" data-x="2300" data-scale="1.0"><p>I wrote Himpress as a tool for presenting Haskell, so it also supports syntax highlighting for Haskell:</p><br/>
 <pre class="haskell"><pre><span class='hs-definition'>fibs</span> <span class='hs-keyglyph'>=</span> <span class='hs-num'>1</span> <span class='hs-conop'>:</span> <span class='hs-num'>1</span> <span class='hs-conop'>:</span> <span class='hs-varid'>zipWith</span> <span class='hs-layout'>(</span><span class='hs-varop'>+</span><span class='hs-layout'>)</span> <span class='hs-varid'>fibs</span> <span class='hs-layout'>(</span><span class='hs-varid'>tail</span> <span class='hs-varid'>fibs</span><span class='hs-layout'>)</span>
 
 <span class='hs-definition'>qsort</span> <span class='hs-keyglyph'>::</span> <span class='hs-layout'>(</span><span class='hs-conid'>Ord</span> <span class='hs-varid'>a</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>=&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-keyglyph'>[</span><span class='hs-varid'>a</span><span class='hs-keyglyph'>]</span>
@@ -31,11 +272,28 @@ data-awesome attribute value of &quot;very very awesome!&quot;
         <span class='hs-varid'>larger</span>  <span class='hs-keyglyph'>=</span> <span class='hs-varid'>filter</span> <span class='hs-layout'>(</span><span class='hs-varop'>&gt;=</span><span class='hs-varid'>x</span><span class='hs-layout'>)</span> <span class='hs-varid'>xs</span>
 <span class='hs-definition'>qsort</span> <span class='hs-conid'>[]</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>[]</span>
 </pre></pre><br/>
-<p>(Himpress could also support all of the <a href="http://hackage.haskell.org/package/highlighting-kate-0.2.10">languages</a> supported by John MacFarlane's <a href="http://johnmacfarlane.net/highlighting-kate/">highlighting-kate</a> library - I just haven't gotten around to it.)</p></div><div class="step" data-z="-1100" data-y="2500" data-x="1100" data-scale="1.0"><p><strong>Want to use Himpress?</strong></p>
+<p>(Himpress could also support all of the <a href="http://hackage.haskell.org/package/highlighting-kate-0.2.10">languages</a> supported by John MacFarlane's <a href="http://johnmacfarlane.net/highlighting-kate/">highlighting-kate</a> library - I just haven't gotten around to it.)</p></div><div class="step" data-z="-1100" data-y="2700" data-x="1100" data-scale="1.0"><p><strong>Want to use Himpress?</strong></p>
 <ul>
 <li><p>Install the <a href="http://hackage.haskell.org/platform/">Haskell platform</a></p></li>
 <li><p>Clone <a href="https://github.com/matthewSorensen/himpress">Himpress</a></p></li>
 <li><p>Run <em>cabal install</em> to install the <em>himpress</em> executable</p></li>
-</ul></div><div class="step" data-z="-1100" data-y="3000" data-x="1100" data-scale="1.0"><p>However, Himpress is very alpha! Future plans include a more intuitive model for the 3d aspect of impress.js, as well as some degree of documentation.</p></div><div class="step" data-z="-1100" data-y="3500" data-x="1100" data-scale="1.0"><p>&copy; 2012, Matthew Sorensen.</p>
+</ul></div><div class="step" data-z="-1100" data-y="3200" data-x="1100" data-scale="1.0"><p>However, Himpress is very alpha! Future plans include more intuitive model for the 3d aspect of impress.js, as well as some degree of documentation.</p></div><div class="step" data-z="-1100" data-y="3700" data-x="1100" data-scale="1.0"><p>&copy; 2012, Matthew Sorensen.</p>
 <p>This is all made possible by Bartek Szopka's awesome work on Impress.js</p> 
-</div><div class="step" id="overview" data-z="-1100" data-y="1500" data-x="1100" data-scale="5.0"></div></div><script type="text/javascript" src="impress.js"></script></body></html>
+</div><div class="step" id="overview" data-z="-1100" data-y="1700" data-x="1100" data-scale="5.0"></div></div><script type="text/javascript">/**
+ * impress.js
+ *
+ * impress.js is a presentation tool based on the power of CSS3 transforms and transitions
+ * in modern browsers and inspired by the idea behind prezi.com.
+ *
+ *
+ * Copyright 2011-2012 Bartek Szopka (@bartaz)
+ *
+ * Released under the MIT and GPL Licenses.
+ *
+ * ------------------------------------------------
+ *  author:  Bartek Szopka
+ *  version: 0.5.1
+ *  url:     http://bartaz.github.com/impress.js/
+ *  source:  http://github.com/bartaz/impress.js/
+ *//*jshint bitwise:true, curly:true, eqeqeq:true, forin:true, latedef:true, newcap:true,
+         noarg:true, noempty:true, undef:true, strict:true, browser:true */(function(a,b){"use strict";var c=function(){var b=a.createElement("dummy").style,c="Webkit Moz O ms Khtml".split(" "),d={};return function(a){if(typeof d[a]=="undefined"){var e=a.charAt(0).toUpperCase()+a.substr(1),f=(a+" "+c.join(e+" ")+e).split(" ");d[a]=null;for(var g in f)if(b[f[g]]!==undefined){d[a]=f[g];break}}return d[a]}}(),d=function(a){return[].slice.call(a)},e=function(a,b){var d,e;for(d in b)b.hasOwnProperty(d)&&(e=c(d),e!==null&&(a.style[e]=b[d]));return a},f=function(a,b){return isNaN(a)?b||0:Number(a)},g=function(b){return a.getElementById(b)},h=function(b,c){return c=c||a,c.querySelector(b)},i=function(b,c){return c=c||a,d(c.querySelectorAll(b))},j=function(b,c,d){var e=a.createEvent("CustomEvent");e.initCustomEvent(c,!0,!0,d),b.dispatchEvent(e)},k=function(a){return" translate3d("+a.x+"px,"+a.y+"px,"+a.z+"px) "},l=function(a,b){var c=" rotateX("+a.x+"deg) ",d=" rotateY("+a.y+"deg) ",e=" rotateZ("+a.z+"deg) ";return b?e+d+c:c+d+e},m=function(a){return" scale("+a+") "},n=function(a){return" perspective("+a+"px) "},o=function(){return g(b.location.hash.replace(/^#\/?/,""))},p=function(a){var c=b.innerHeight/a.height,d=b.innerWidth/a.width,e=c>d?d:c;return a.maxScale&&e>a.maxScale&&(e=a.maxScale),a.minScale&&e<a.minScale&&(e=a.minScale),e},q=a.body,r=navigator.userAgent.toLowerCase(),s=c("perspective")!==null&&q.classList&&q.dataset&&r.search(/(iphone)|(ipod)|(android)/)===-1;s?(q.classList.remove("impress-not-supported"),q.classList.add("impress-supported")):q.className+=" impress-not-supported ";var t={transition:"transitionEnd",OTransition:"oTransitionEnd",msTransition:"MSTransitionEnd",MozTransition:"transitionend",WebkitTransition:"webkitTransitionEnd"}[c("transition")],u={},v={width:1024,height:768,maxScale:1,minScale:0,perspective:1e3,transitionDuration:1e3},w=function(){return!1},x=b.impress=function(c){if(!s)return{init:w,"goto":w,prev:w,next:w};c=c||"impress";if(u["impress-root-"+c])return u["impress-root-"+c];var r={},x=null,y=null,z=null,A=null,B=null,C=g(c),D=a.createElement("div"),E=!1,F=null,G=function(a){F!==a&&(j(a,"impress:stepenter"),F=a)},H=function(a){F===a&&(j(a,"impress:stepleave"),F=null)},I=null,J=function(a){a.target===I&&(G(x),a.stopPropagation())},K=function(a,b){var c=a.dataset,d={translate:{x:f(c.x),y:f(c.y),z:f(c.z)},rotate:{x:f(c.rotateX),y:f(c.rotateY),z:f(c.rotateZ||c.rotate)},scale:f(c.scale,1),el:a};a.id||(a.id="step-"+(b+1)),r["impress-"+a.id]=d,e(a,{position:"absolute",transform:"translate(-50%,-50%)"+k(d.translate)+l(d.rotate)+m(d.scale),transformStyle:"preserve-3d"})},L=function(){if(E)return;var b=h("meta[name='viewport']")||a.createElement("meta");b.content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no",b.parentNode!==a.head&&(b.name="viewport",a.head.appendChild(b));var g=C.dataset;A={width:f(g.width,v.width),height:f(g.height,v.height),maxScale:f(g.maxScale,v.maxScale),minScale:f(g.minScale,v.minScale),perspective:f(g.perspective,v.perspective),transitionDuration:f(g.transitionDuration,v.transitionDuration)},B=p(A),d(C.childNodes).forEach(function(a){D.appendChild(a)}),C.appendChild(D),a.documentElement.style.height="100%",e(q,{height:"100%",overflow:"hidden"});var k={position:"absolute",transformOrigin:"top left",transition:"all 0s ease-in-out",transformStyle:"preserve-3d"};e(C,k),e(C,{top:"50%",left:"50%",transform:n(A.perspective/B)+m(B)}),e(D,k),C.addEventListener(t,J,!1),D.addEventListener(t,J,!1),q.classList.remove("impress-disabled"),q.classList.add("impress-enabled"),z=i(".step",C),z.forEach(K),y={translate:{x:0,y:0,z:0},rotate:{x:0,y:0,z:0},scale:1},E=!0,j(C,"impress:init",{api:u["impress-root-"+c]})},M=function(a){return typeof a=="number"?a=a<0?z[z.length+a]:z[a]:typeof a=="string"&&(a=g(a)),a&&a.id&&r["impress-"+a.id]?a:null},N=function(a,c){if(!E||!(a=M(a)))return!1;b.scrollTo(0,0);var d=r["impress-"+a.id];x&&(x.classList.remove("active"),q.classList.remove("impress-on-"+x.id)),a.classList.add("active"),q.classList.add("impress-on-"+a.id);var g={rotate:{x:-d.rotate.x,y:-d.rotate.y,z:-d.rotate.z},translate:{x:-d.translate.x,y:-d.translate.y,z:-d.translate.z},scale:1/d.scale},h=g.scale>=y.scale;c=f(c,A.transitionDuration);var i=c/2;a===x&&(B=p(A));var j=g.scale*B;return I=g.scale>y.scale?C:D,x&&x!==a&&H(x),e(C,{transform:n(A.perspective/j)+m(j),transitionDuration:c+"ms",transitionDelay:(h?i:0)+"ms"}),e(D,{transform:l(g.rotate,!0)+k(g.translate),transitionDuration:c+"ms",transitionDelay:(h?0:i)+"ms"}),y=g,x=a,c===0&&G(x),a},O=function(){var a=z.indexOf(x)-1;return a=a>=0?z[a]:z[z.length-1],N(a)},P=function(){var a=z.indexOf(x)+1;return a=a<z.length?z[a]:z[0],N(a)};return C.addEventListener("impress:init",function(){z.forEach(function(a){a.classList.add("future")}),C.addEventListener("impress:stepenter",function(a){a.target.classList.remove("past"),a.target.classList.remove("future"),a.target.classList.add("present")},!1),C.addEventListener("impress:stepleave",function(a){a.target.classList.remove("present"),a.target.classList.add("past")},!1)},!1),C.addEventListener("impress:init",function(){var a="";C.addEventListener("impress:stepenter",function(c){b.location.hash=a="#/"+c.target.id},!1),b.addEventListener("hashchange",function(){b.location.hash!==a&&N(o())},!1),N(o()||z[0],0)},!1),q.classList.add("impress-disabled"),u["impress-root-"+c]={init:L,"goto":N,next:P,prev:O}};x.supported=s})(document,window),function(a,b){"use strict";var c=function(a,b){var c=null;return function(){var d=this,e=arguments;clearTimeout(c),c=setTimeout(function(){a.apply(d,e)},b)}};a.addEventListener("impress:init",function(d){var e=d.detail.api;a.addEventListener("keydown",function(a){(a.keyCode===9||a.keyCode>=32&&a.keyCode<=34||a.keyCode>=37&&a.keyCode<=40)&&a.preventDefault()},!1),a.addEventListener("keyup",function(a){if(a.keyCode===9||a.keyCode>=32&&a.keyCode<=34||a.keyCode>=37&&a.keyCode<=40){switch(a.keyCode){case 33:case 37:case 38:e.prev();break;case 9:case 32:case 34:case 39:case 40:e.next()}a.preventDefault()}},!1),a.addEventListener("click",function(b){var c=b.target;while(c.tagName!=="A"&&c!==a.documentElement)c=c.parentNode;if(c.tagName==="A"){var d=c.getAttribute("href");d&&d[0]==="#"&&(c=a.getElementById(d.slice(1)))}e.goto(c)&&(b.stopImmediatePropagation(),b.preventDefault())},!1),a.addEventListener("click",function(b){var c=b.target;while((!c.classList.contains("step")||!!c.classList.contains("active"))&&c!==a.documentElement)c=c.parentNode;e.goto(c)&&b.preventDefault()},!1),a.addEventListener("touchstart",function(a){if(a.touches.length===1){var c=a.touches[0].clientX,d=b.innerWidth*.3,f=null;c<d?f=e.prev():c>b.innerWidth-d&&(f=e.next()),f&&a.preventDefault()}},!1),b.addEventListener("resize",c(function(){e.goto(a.querySelector(".active"),500)},250),!1)},!1)}(document,window);</script><script type="text/javascript">impress().init();</script></body></html>
