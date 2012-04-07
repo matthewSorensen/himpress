@@ -87,5 +87,5 @@ includes o
     | otherwise   = do
   imp <- getDataFileName "js/impress.min.js" 
   start <- getDataFileName "js/start.js"
-  sty <- getDataFileName "css/style.css"
+  sty <- getDataFileName "css/style.min.css"
   return $ ((sty:) *** ([imp,start]++)) $ splitCssJs $ include o

@@ -1,4 +1,7 @@
 *~
 *.o
 *.hi
-css/style.css
+css/style.min.css
+js/impress.min.js
+.sass-cache/
+dist/
